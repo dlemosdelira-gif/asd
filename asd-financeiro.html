@@ -4,9 +4,11 @@
   Alugue Seu Drone
 
   COMO ADICIONAR LOGO:
-  Substitua o elemento <div class="logo-placeholder">ASD</div>
+  Substitua <div class="logo-placeholder">ASD</div>
   por: <img src="sua-logo.png" alt="ASD" style="height:40px;">
-  Ou use uma URL: <img src="https://seusite.com/logo.png" alt="ASD" style="height:40px;">
+
+  IMPORTAÇÃO XLS: use o botão "📥 Importar XLS" na aba Transações.
+  O sistema lê automaticamente as abas 2024, 2025 e 2026 do seu DASHBOARD.xlsx.
 -->
 <html lang="pt-BR">
 <head>
@@ -16,128 +18,64 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Roboto', sans-serif; background: #f5f5f5; color: #4a4b4d; min-height: 100vh; }
 
-body {
-  font-family: 'Roboto', sans-serif;
-  background: #f5f5f5;
-  color: #4a4b4d;
-  min-height: 100vh;
-}
-
-/* ─── HEADER ─────────────────────────────────────────── */
+/* ─── HEADER ─── */
 header {
-  background: #1799d1;
-  color: white;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  background: #1799d1; color: white; padding: 14px 20px;
+  display: flex; align-items: center; gap: 14px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: sticky; top: 0; z-index: 100;
 }
-
 .logo-placeholder {
-  width: 44px; height: 44px;
-  background: white;
-  color: #1799d1;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 14px;
-  flex-shrink: 0;
+  width: 44px; height: 44px; background: white; color: #1799d1;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; flex-shrink: 0;
 }
-
 .header-text h1 { font-size: 18px; font-weight: 700; }
 .header-text p  { font-size: 11px; opacity: .85; }
 
-/* ─── NAV TABS ───────────────────────────────────────── */
+/* ─── NAV ─── */
 nav {
-  background: white;
-  display: flex;
-  overflow-x: auto;
+  background: white; display: flex; overflow-x: auto;
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-  position: sticky;
-  top: 72px;
-  z-index: 99;
+  position: sticky; top: 72px; z-index: 99;
 }
-
 nav button {
-  flex: none;
-  background: none;
-  border: none;
-  padding: 14px 18px;
-  font-size: 13px;
-  font-family: inherit;
-  color: #4a4b4d;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  white-space: nowrap;
-  transition: color .2s, border-color .2s;
+  flex: none; background: none; border: none; padding: 14px 18px;
+  font-size: 13px; font-family: inherit; color: #4a4b4d; cursor: pointer;
+  border-bottom: 3px solid transparent; white-space: nowrap; transition: color .2s, border-color .2s;
 }
 nav button:hover { color: #1799d1; }
-nav button.active {
-  color: #1799d1;
-  border-bottom-color: #1799d1;
-  font-weight: 500;
-}
+nav button.active { color: #1799d1; border-bottom-color: #1799d1; font-weight: 500; }
 
-/* ─── MAIN ───────────────────────────────────────────── */
+/* ─── MAIN ─── */
 main { max-width: 900px; margin: 0 auto; padding: 20px 16px 40px; }
-
 section.page { display: none; }
 section.page.active { display: block; }
 
-/* ─── CARDS ──────────────────────────────────────────── */
-.card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 20px;
-  margin-bottom: 16px;
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
+/* ─── CARDS ─── */
+.card { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 16px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; gap: 8px; flex-wrap: wrap; }
 .section-header h2 { font-size: 17px; font-weight: 700; }
+.section-header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-/* ─── DASHBOARD METRICS ──────────────────────────────── */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
-.metric-card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 18px 16px;
-  text-align: center;
-}
-
+/* ─── METRICS ─── */
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 16px; }
+.metric-card { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 18px 16px; text-align: center; }
 .metric-card .metric-icon { font-size: 28px; margin-bottom: 6px; }
 .metric-card .metric-label { font-size: 12px; color: #888; margin-bottom: 4px; }
-.metric-card .metric-value {
-  font-size: 20px; font-weight: 700;
-}
-.metric-card .metric-value.green { color: #22c55e; }
-.metric-card .metric-value.red   { color: #ef4444; }
-.metric-card .metric-value.blue  { color: #1799d1; }
+.metric-card .metric-value { font-size: 20px; font-weight: 700; }
+.metric-value.green { color: #22c55e; }
+.metric-value.red   { color: #ef4444; }
+.metric-value.blue  { color: #1799d1; }
 
-/* ─── BUTTONS ────────────────────────────────────────── */
+/* ─── BUTTONS ─── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 9px 18px;
-  border: none; border-radius: 7px;
+  padding: 9px 18px; border: none; border-radius: 7px;
   font-family: inherit; font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: opacity .15s, transform .1s;
+  cursor: pointer; transition: opacity .15s, transform .1s; white-space: nowrap;
 }
 .btn:hover { opacity: .88; }
 .btn:active { transform: scale(.97); }
@@ -145,154 +83,94 @@ section.page.active { display: block; }
 .btn-success  { background: #22c55e; color: white; }
 .btn-danger   { background: #ef4444; color: white; }
 .btn-gray     { background: #e5e7eb; color: #4a4b4d; }
-.btn-sm       { padding: 6px 12px; font-size: 12px; }
-.btn-icon     { background: none; border: none; cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 5px; }
+.btn-warning  { background: #f59e0b; color: white; }
+.btn-green-o  { background: #25D366; color: white; }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-icon { background: none; border: none; cursor: pointer; font-size: 15px; padding: 4px 7px; border-radius: 5px; }
 .btn-icon:hover { background: #f3f4f6; }
 
-/* ─── VISUAL SELECT BUTTONS ──────────────────────────── */
-.btn-group {
-  display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 14px;
-}
-
+/* ─── VISUAL SELECT ─── */
+.btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 14px; }
 .btn-sel {
-  padding: 9px 14px;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  background: white;
-  color: #4a4b4d;
-  font-family: inherit;
-  font-size: 13px;
-  cursor: pointer;
-  transition: all .15s;
-  white-space: nowrap;
+  padding: 9px 14px; border: 2px solid #e5e7eb; border-radius: 8px;
+  background: white; color: #4a4b4d; font-family: inherit; font-size: 13px;
+  cursor: pointer; transition: all .15s; white-space: nowrap;
 }
 .btn-sel:hover { border-color: #1799d1; color: #1799d1; }
-.btn-sel.selected {
-  background: #1799d1;
-  border-color: #1799d1;
-  color: white;
-}
+.btn-sel.selected { background: #1799d1; border-color: #1799d1; color: white; }
 
-/* ─── FORMS ──────────────────────────────────────────── */
+/* ─── FORMS ─── */
 .form-group { margin-bottom: 14px; }
 .form-group label { display: block; font-size: 12px; font-weight: 500; color: #555; margin-bottom: 5px; }
-
 .form-control {
-  width: 100%; padding: 10px 12px;
-  border: 1.5px solid #e5e7eb; border-radius: 7px;
-  font-family: inherit; font-size: 14px; color: #4a4b4d;
-  transition: border-color .15s;
-  background: white;
+  width: 100%; padding: 10px 12px; border: 1.5px solid #e5e7eb; border-radius: 7px;
+  font-family: inherit; font-size: 14px; color: #4a4b4d; transition: border-color .15s; background: white;
 }
 .form-control:focus { outline: none; border-color: #1799d1; }
-
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-.form-actions {
-  display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap;
-}
-
-/* ─── INLINE FORM AREA ───────────────────────────────── */
-.form-area {
-  display: none;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 20px;
-  margin-bottom: 16px;
-}
+.form-actions { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+.form-area { display: none; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 16px; }
 .form-area.open { display: block; }
 
-/* ─── LIST ITEMS ─────────────────────────────────────── */
+/* ─── LIST ─── */
 .list-container { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
 .list-container .list-header { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; font-size: 13px; font-weight: 600; color: #888; }
-
 .list-item {
   display: flex; align-items: center; gap: 10px;
-  padding: 12px 16px;
-  border-bottom: 1px solid #f9f9f9;
-  transition: background .1s;
+  padding: 12px 16px; border-bottom: 1px solid #f9f9f9; transition: background .1s;
 }
 .list-item:last-child { border-bottom: none; }
 .list-item:hover { background: #fafafa; }
-
-.list-item .item-icon { font-size: 20px; flex-shrink: 0; }
-.list-item .item-main { flex: 1; min-width: 0; }
+.list-item .item-icon  { font-size: 20px; flex-shrink: 0; }
+.list-item .item-main  { flex: 1; min-width: 0; }
 .list-item .item-title { font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .list-item .item-subtitle { font-size: 11px; color: #888; margin-top: 2px; }
 .list-item .item-amount { font-size: 15px; font-weight: 700; flex-shrink: 0; }
 .item-amount.green { color: #22c55e; }
 .item-amount.red   { color: #ef4444; }
 
-/* ─── EMPTY STATE ────────────────────────────────────── */
-.empty-state {
-  text-align: center; padding: 40px 20px; color: #aaa;
-}
+/* ─── EMPTY STATE ─── */
+.empty-state { text-align: center; padding: 40px 20px; color: #aaa; }
 .empty-state .empty-icon { font-size: 40px; margin-bottom: 10px; }
 .empty-state p { font-size: 13px; }
 
-/* ─── SPINNER ────────────────────────────────────────── */
+/* ─── SPINNER ─── */
 .spinner-wrap { display: flex; justify-content: center; padding: 30px; }
-.spinner {
-  width: 30px; height: 30px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #1799d1;
-  border-radius: 50%;
-  animation: spin .7s linear infinite;
-}
+.spinner { width: 30px; height: 30px; border: 3px solid #e5e7eb; border-top-color: #1799d1; border-radius: 50%; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ─── BADGE ──────────────────────────────────────────── */
-.badge {
-  display: inline-block; padding: 3px 9px; border-radius: 20px;
-  font-size: 11px; font-weight: 700;
-}
+/* ─── BADGE ─── */
+.badge { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 700; }
 .badge-green  { background: #dcfce7; color: #16a34a; }
 .badge-yellow { background: #fef9c3; color: #b45309; }
 .badge-red    { background: #fee2e2; color: #dc2626; }
 
-/* ─── CALC CARD ──────────────────────────────────────── */
-.calc-card {
-  border-radius: 8px; padding: 14px 16px; margin-top: 14px;
-  border: 1.5px solid #e5e7eb;
-}
-.calc-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 4px 0; font-size: 13px;
-}
+/* ─── CALC CARD ─── */
+.calc-card { border-radius: 8px; padding: 14px 16px; margin-top: 14px; border: 1.5px solid #e5e7eb; }
+.calc-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 13px; }
 .calc-row.total { font-weight: 700; font-size: 15px; border-top: 1.5px solid #e5e7eb; margin-top: 6px; padding-top: 8px; }
 .calc-row .label { color: #666; }
 .calc-row .val   { font-weight: 500; }
 
-/* ─── PEDIDO CARD ────────────────────────────────────── */
+/* ─── PEDIDO / ORC CARD ─── */
 .pedido-card {
-  background: white; border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 14px 16px;
-  margin-bottom: 10px;
-  display: flex; align-items: center; gap: 12px;
+  background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 14px 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px;
 }
-.pedido-card .p-info { flex: 1; }
+.pedido-card .p-info  { flex: 1; }
 .pedido-card .p-title { font-size: 14px; font-weight: 600; }
 .pedido-card .p-sub   { font-size: 11px; color: #888; margin-top: 2px; }
 .pedido-card .p-right { text-align: right; flex-shrink: 0; }
 .pedido-card .p-margem-val { font-size: 13px; font-weight: 600; margin-top: 3px; color: #4a4b4d; }
+.pedido-card .p-actions { display: flex; gap: 4px; flex-shrink: 0; align-items: center; }
 
-/* ─── WIZARD ─────────────────────────────────────────── */
-.steps-indicator {
-  display: flex; align-items: center; gap: 4px;
-  margin-bottom: 22px; overflow-x: auto; padding-bottom: 4px;
-}
-.step-dot {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  flex-shrink: 0;
-}
+/* ─── WIZARD ─── */
+.steps-indicator { display: flex; align-items: center; gap: 4px; margin-bottom: 22px; overflow-x: auto; padding-bottom: 4px; }
+.step-dot { display: flex; flex-direction: column; align-items: center; gap: 4px; flex-shrink: 0; }
 .step-dot .dot {
   width: 28px; height: 28px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
-  border: 2px solid #e5e7eb; background: white; color: #aaa;
-  transition: all .2s;
+  font-size: 12px; font-weight: 700; border: 2px solid #e5e7eb; background: white; color: #aaa; transition: all .2s;
 }
 .step-dot.active .dot  { border-color: #1799d1; background: #1799d1; color: white; }
 .step-dot.done .dot    { border-color: #22c55e; background: #22c55e; color: white; }
@@ -301,75 +179,84 @@ section.page.active { display: block; }
 .step-dot.done .step-label   { color: #22c55e; }
 .step-line { flex: 1; height: 2px; background: #e5e7eb; min-width: 20px; }
 .step-line.done { background: #22c55e; }
-
 .wizard-step { display: none; }
 .wizard-step.active { display: block; }
 
-/* ─── ORÇAMENTO ITENS ────────────────────────────────── */
-.orcamento-item-row {
-  display: flex; gap: 8px; align-items: center; margin-bottom: 8px;
-}
+/* ─── ORC ITENS ─── */
+.orcamento-item-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
 .orcamento-item-row .form-control { flex: 1; }
 .orcamento-item-row .val-input    { width: 120px; flex: none; }
 
-/* ─── DRE ────────────────────────────────────────────── */
-.dre-section { margin-bottom: 12px; }
-.dre-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 6px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5;
-}
+/* ─── DRE ─── */
+.dre-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5; }
 .dre-row.indent { padding-left: 20px; }
 .dre-row.indent .dre-label { color: #666; }
-.dre-row.subtotal {
-  font-weight: 700; font-size: 15px;
-  padding: 10px 14px; border-radius: 8px; margin: 8px 0;
-  border-bottom: none;
-}
-.dre-row.subtotal.blue-bg { background: #eff8ff; color: #1799d1; }
+.dre-row.subtotal { font-weight: 700; font-size: 15px; padding: 10px 14px; border-radius: 8px; margin: 8px 0; border-bottom: none; }
+.dre-row.subtotal.blue-bg  { background: #eff8ff; color: #1799d1; }
 .dre-row.subtotal.green-bg { background: #f0fdf4; color: #16a34a; }
 .dre-row.subtotal.red-bg   { background: #fef2f2; color: #dc2626; }
 .dre-label { flex: 1; }
 .dre-val   { font-weight: 500; }
-
-.month-nav {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
-  background: white; border-radius: 10px; padding: 12px 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
+.month-nav { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; background: white; border-radius: 10px; padding: 12px 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .month-nav span { flex: 1; text-align: center; font-weight: 600; font-size: 15px; }
 
-/* ─── TOAST ──────────────────────────────────────────── */
+/* ─── MODAL ─── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 200;
+  align-items: center; justify-content: center; padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: white; border-radius: 12px; width: 100%; max-width: 540px;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.modal-header { padding: 18px 20px 0; }
+.modal-header h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.modal-header p  { font-size: 12px; color: #888; }
+.modal-body   { padding: 16px 20px; }
+.modal-footer { padding: 0 20px 18px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+.import-summary-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5; }
+.import-summary-row:last-child { border-bottom: none; }
+.import-year-toggle { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+
+/* ─── TOAST ─── */
 #toast {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-  background: #4a4b4d; color: white;
-  padding: 10px 20px; border-radius: 8px;
-  font-size: 13px; z-index: 1000;
-  opacity: 0; transition: opacity .3s;
+  background: #4a4b4d; color: white; padding: 10px 20px; border-radius: 8px;
+  font-size: 13px; z-index: 1000; opacity: 0; transition: opacity .3s;
   pointer-events: none; max-width: 90vw; text-align: center;
 }
 #toast.show { opacity: 1; }
-#toast.error { background: #ef4444; }
+#toast.error   { background: #ef4444; }
 #toast.success { background: #22c55e; }
 
-/* ─── RESPONSIVE ─────────────────────────────────────── */
+/* ─── PROGRESS BAR ─── */
+.progress-bar { height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; margin: 10px 0; }
+.progress-bar-fill { height: 100%; background: #1799d1; transition: width .3s; }
+
+/* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .metrics-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .form-row { grid-template-columns: 1fr; }
-  .metric-card .metric-value { font-size: 16px; }
+  .metric-value { font-size: 16px; }
   nav button { padding: 12px 12px; font-size: 12px; }
   .btn-sel { font-size: 12px; padding: 8px 11px; }
 }
+@media (max-width: 400px) { .metrics-grid { grid-template-columns: 1fr; } }
 
-@media (max-width: 400px) {
-  .metrics-grid { grid-template-columns: 1fr; }
+/* ─── PRINT (PDF de orçamento) ─── */
+@media print {
+  body * { visibility: hidden; }
+  #pdf-print-area, #pdf-print-area * { visibility: visible; }
+  #pdf-print-area { position: fixed; inset: 0; background: white; padding: 32px 40px; font-family: 'Roboto', sans-serif; }
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
-  <!-- Substituir pela logo real: <img src="logo.png" alt="ASD" style="height:40px;"> -->
   <div class="logo-placeholder">ASD</div>
   <div class="header-text">
     <h1>ASD Financeiro</h1>
@@ -377,7 +264,6 @@ section.page.active { display: block; }
   </div>
 </header>
 
-<!-- NAV -->
 <nav>
   <button class="active" onclick="showPage('dashboard')">📊 Dashboard</button>
   <button onclick="showPage('transacoes')">💰 Transações</button>
@@ -388,306 +274,292 @@ section.page.active { display: block; }
 
 <main>
 
-  <!-- ═══ DASHBOARD ═══════════════════════════════════════ -->
-  <section id="page-dashboard" class="page active">
-    <div class="metrics-grid" id="dash-metrics">
-      <div class="spinner-wrap" style="grid-column:span 2"><div class="spinner"></div></div>
-    </div>
-    <div class="card">
-      <div class="section-header"><h2>Resumo do Mês</h2><span id="dash-month" style="font-size:13px;color:#888;"></span></div>
-      <div id="dash-summary">
-        <div class="spinner-wrap"><div class="spinner"></div></div>
-      </div>
-    </div>
-  </section>
+<!-- ═══ DASHBOARD ═══ -->
+<section id="page-dashboard" class="page active">
+  <div class="metrics-grid" id="dash-metrics">
+    <div class="spinner-wrap" style="grid-column:span 2"><div class="spinner"></div></div>
+  </div>
+  <div class="card">
+    <div class="section-header"><h2>Resumo do Mês</h2><span id="dash-month" style="font-size:13px;color:#888;"></span></div>
+    <div id="dash-summary"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+  </div>
+</section>
 
-  <!-- ═══ TRANSAÇÕES ══════════════════════════════════════ -->
-  <section id="page-transacoes" class="page">
-    <div class="section-header">
-      <h2>💰 Transações</h2>
+<!-- ═══ TRANSAÇÕES ═══ -->
+<section id="page-transacoes" class="page">
+  <div class="section-header">
+    <h2>💰 Transações</h2>
+    <div class="section-header-actions">
+      <button class="btn btn-warning btn-sm" onclick="openImportModal()">📥 Importar XLS</button>
       <button class="btn btn-primary" onclick="toggleTrForm()">+ Nova Transação</button>
     </div>
+  </div>
+  <input type="file" id="xls-file-input" accept=".xlsx,.xls" style="display:none" onchange="handleXLSFile(this)">
 
-    <div class="form-area" id="tr-form-area">
-      <h3 style="margin-bottom:14px;font-size:15px;">Nova Transação</h3>
-
+  <div class="form-area" id="tr-form-area">
+    <h3 style="margin-bottom:14px;font-size:15px;">Nova Transação</h3>
+    <div class="form-group">
+      <label>Tipo *</label>
+      <div class="btn-group" id="tr-tipo-group">
+        <button class="btn-sel" onclick="selectTrTipo('receita',this);event.stopPropagation()">💰 Receita</button>
+        <button class="btn-sel" onclick="selectTrTipo('despesa',this);event.stopPropagation()">💸 Despesa</button>
+      </div>
+    </div>
+    <div class="form-group" id="tr-cat-group" style="display:none">
+      <label>Categoria *</label>
+      <div class="btn-group" id="tr-cat-buttons"></div>
+    </div>
+    <div class="form-row">
       <div class="form-group">
-        <label>Tipo *</label>
-        <div class="btn-group" id="tr-tipo-group">
-          <button class="btn-sel" onclick="selectTrTipo('receita',this);event.stopPropagation()">💰 Receita</button>
-          <button class="btn-sel" onclick="selectTrTipo('despesa',this);event.stopPropagation()">💸 Despesa</button>
-        </div>
+        <label>Valor (R$) *</label>
+        <input type="number" class="form-control" id="tr-valor" placeholder="0,00" min="0" step="0.01">
       </div>
-
-      <div class="form-group" id="tr-cat-group" style="display:none">
-        <label>Categoria *</label>
-        <div class="btn-group" id="tr-cat-buttons"></div>
+      <div class="form-group">
+        <label>Data *</label>
+        <input type="date" class="form-control" id="tr-data">
       </div>
+    </div>
+    <div class="form-group">
+      <label>Descrição *</label>
+      <input type="text" class="form-control" id="tr-desc" placeholder="Descreva a transação...">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="saveTr()">💾 Salvar</button>
+      <button class="btn btn-gray" onclick="toggleTrForm(false)">Cancelar</button>
+    </div>
+  </div>
+  <div class="list-container" id="tr-list">
+    <div class="spinner-wrap"><div class="spinner"></div></div>
+  </div>
+</section>
 
+<!-- ═══ PEDIDOS ═══ -->
+<section id="page-pedidos" class="page">
+  <div class="section-header">
+    <h2>📦 Pedidos</h2>
+    <button class="btn btn-primary" onclick="togglePedForm()">+ Novo Pedido</button>
+  </div>
+  <div class="form-area" id="ped-form-area">
+    <h3 style="margin-bottom:14px;font-size:15px;">Novo Pedido</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Cliente *</label>
+        <input type="text" class="form-control" id="ped-cliente" placeholder="Nome do cliente">
+      </div>
+      <div class="form-group">
+        <label>Data *</label>
+        <input type="date" class="form-control" id="ped-data">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tipo de Serviço *</label>
+      <div class="btn-group" id="ped-servico-group">
+        <button class="btn-sel" onclick="selectPedServico('Imagens Aéreas',this);event.stopPropagation()">📸 Imagens Aéreas</button>
+        <button class="btn-sel" onclick="selectPedServico('Inspeção',this);event.stopPropagation()">🔍 Inspeção</button>
+        <button class="btn-sel" onclick="selectPedServico('Mapeamento',this);event.stopPropagation()">🗺️ Mapeamento</button>
+        <button class="btn-sel" onclick="selectPedServico('Eventos',this);event.stopPropagation()">🎉 Eventos</button>
+        <button class="btn-sel" onclick="selectPedServico('Locação s/ Op',this);event.stopPropagation()">🚁 Locação s/ Op</button>
+        <button class="btn-sel" onclick="selectPedServico('Locação c/ Op',this);event.stopPropagation()">👨‍✈️ Locação c/ Op</button>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Receita (R$) *</label>
+        <input type="number" class="form-control" id="ped-receita" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+      </div>
+      <div class="form-group">
+        <label>Custo Piloto (R$)</label>
+        <input type="number" class="form-control" id="ped-piloto" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Imposto s/ Piloto</label>
+      <div class="btn-group" id="ped-imposto-group">
+        <button class="btn-sel selected" id="imp-0"  onclick="selectImposto(0,this);event.stopPropagation()">0%</button>
+        <button class="btn-sel"           id="imp-6"  onclick="selectImposto(6,this);event.stopPropagation()">6%</button>
+        <button class="btn-sel"           id="imp-15" onclick="selectImposto(15,this);event.stopPropagation()">15%</button>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Custo Logística (R$)</label>
+        <input type="number" class="form-control" id="ped-logistica" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+      </div>
+      <div class="form-group">
+        <label>Taxa Mercado Pago/PayPal (R$)</label>
+        <input type="number" class="form-control" id="ped-taxa" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Custo Equipamento (R$)</label>
+      <input type="number" class="form-control" id="ped-equip" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+    </div>
+    <div class="calc-card">
+      <div class="calc-row"><span class="label">Imposto s/ Piloto</span><span class="val" id="cc-imposto">R$ 0,00</span></div>
+      <div class="calc-row"><span class="label">Custo Total</span><span class="val" id="cc-custo">R$ 0,00</span></div>
+      <div class="calc-row total">
+        <span class="label">Margem</span>
+        <span id="cc-margem-pct" class="badge badge-green">0%</span>
+        <span class="val" id="cc-margem-val" style="margin-left:8px;">R$ 0,00</span>
+      </div>
+    </div>
+    <div class="form-actions" style="margin-top:16px;">
+      <button class="btn btn-primary" onclick="savePedido()">💾 Salvar Pedido</button>
+      <button class="btn btn-gray" onclick="togglePedForm(false)">Cancelar</button>
+    </div>
+  </div>
+  <div id="ped-list"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+</section>
+
+<!-- ═══ ORÇAMENTOS ═══ -->
+<section id="page-orcamentos" class="page">
+  <div class="section-header">
+    <h2>📄 Orçamentos</h2>
+    <button class="btn btn-primary" onclick="toggleOrcForm()">+ Novo Orçamento</button>
+  </div>
+  <div class="form-area" id="orc-form-area">
+    <div class="steps-indicator" id="steps-indicator">
+      <div class="step-dot active" id="sdot-1"><div class="dot">1</div><span class="step-label">Cliente</span></div>
+      <div class="step-line" id="sline-1"></div>
+      <div class="step-dot" id="sdot-2"><div class="dot">2</div><span class="step-label">Serviço</span></div>
+      <div class="step-line" id="sline-2"></div>
+      <div class="step-dot" id="sdot-3"><div class="dot">3</div><span class="step-label">Itens</span></div>
+      <div class="step-line" id="sline-3"></div>
+      <div class="step-dot" id="sdot-4"><div class="dot">4</div><span class="step-label">Custos</span></div>
+    </div>
+    <!-- Step 1 -->
+    <div class="wizard-step active" id="wstep-1">
+      <h4 style="margin-bottom:14px;color:#1799d1;">👤 Dados do Cliente</h4>
+      <div class="form-group"><label>Nome *</label><input type="text" class="form-control" id="orc-nome" placeholder="Nome do cliente"></div>
       <div class="form-row">
-        <div class="form-group">
-          <label>Valor (R$) *</label>
-          <input type="number" class="form-control" id="tr-valor" placeholder="0,00" min="0" step="0.01">
-        </div>
-        <div class="form-group">
-          <label>Data *</label>
-          <input type="date" class="form-control" id="tr-data">
-        </div>
+        <div class="form-group"><label>Email</label><input type="email" class="form-control" id="orc-email" placeholder="email@exemplo.com"></div>
+        <div class="form-group"><label>Telefone</label><input type="text" class="form-control" id="orc-tel" placeholder="(00) 00000-0000"></div>
       </div>
-
-      <div class="form-group">
-        <label>Descrição *</label>
-        <input type="text" class="form-control" id="tr-desc" placeholder="Descreva a transação...">
-      </div>
-
       <div class="form-actions">
-        <button class="btn btn-primary" onclick="saveTr()">💾 Salvar</button>
-        <button class="btn btn-gray" onclick="toggleTrForm(false)">Cancelar</button>
+        <button class="btn btn-primary" onclick="orcNext(2)">Próximo →</button>
+        <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
       </div>
     </div>
-
-    <div class="list-container" id="tr-list">
-      <div class="spinner-wrap"><div class="spinner"></div></div>
+    <!-- Step 2 -->
+    <div class="wizard-step" id="wstep-2">
+      <h4 style="margin-bottom:14px;color:#1799d1;">🚁 Tipo de Serviço</h4>
+      <div class="btn-group" id="orc-servico-group">
+        <button class="btn-sel" onclick="selectOrcServico('Imagens Aéreas',this);event.stopPropagation()">📸 Imagens Aéreas</button>
+        <button class="btn-sel" onclick="selectOrcServico('Inspeção',this);event.stopPropagation()">🔍 Inspeção</button>
+        <button class="btn-sel" onclick="selectOrcServico('Mapeamento',this);event.stopPropagation()">🗺️ Mapeamento</button>
+        <button class="btn-sel" onclick="selectOrcServico('Eventos',this);event.stopPropagation()">🎉 Eventos</button>
+        <button class="btn-sel" onclick="selectOrcServico('Locação s/ Op',this);event.stopPropagation()">🚁 Locação s/ Op</button>
+        <button class="btn-sel" onclick="selectOrcServico('Locação c/ Op',this);event.stopPropagation()">👨‍✈️ Locação c/ Op</button>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-gray" onclick="orcNext(1)">← Voltar</button>
+        <button class="btn btn-primary" onclick="orcNext(3)">Próximo →</button>
+        <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
+      </div>
     </div>
-  </section>
-
-  <!-- ═══ PEDIDOS ═════════════════════════════════════════ -->
-  <section id="page-pedidos" class="page">
-    <div class="section-header">
-      <h2>📦 Pedidos</h2>
-      <button class="btn btn-primary" onclick="togglePedForm()">+ Novo Pedido</button>
+    <!-- Step 3 -->
+    <div class="wizard-step" id="wstep-3">
+      <h4 style="margin-bottom:14px;color:#1799d1;">📋 Itens do Orçamento</h4>
+      <div id="orc-itens-list"></div>
+      <button class="btn btn-gray btn-sm" onclick="addOrcItem()" style="margin-bottom:16px;">+ Adicionar Item</button>
+      <div class="form-group">
+        <label>Desconto (%)</label>
+        <input type="number" class="form-control" id="orc-desconto" placeholder="0" min="0" max="100" step="0.1" oninput="calcOrcamento()" style="max-width:160px;">
+      </div>
+      <div class="calc-card">
+        <div class="calc-row"><span class="label">Subtotal</span><span class="val" id="orc-subtotal">R$ 0,00</span></div>
+        <div class="calc-row" id="orc-desc-row" style="display:none"><span class="label">Desconto</span><span class="val" id="orc-desc-val" style="color:#ef4444;">- R$ 0,00</span></div>
+        <div class="calc-row total"><span class="label">TOTAL CLIENTE</span><span class="val" id="orc-total" style="color:#1799d1;font-size:18px;">R$ 0,00</span></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-gray" onclick="orcNext(2)">← Voltar</button>
+        <button class="btn btn-primary" onclick="orcNext(4)">Próximo →</button>
+        <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
+      </div>
     </div>
-
-    <div class="form-area" id="ped-form-area">
-      <h3 style="margin-bottom:14px;font-size:15px;">Novo Pedido</h3>
-
+    <!-- Step 4 -->
+    <div class="wizard-step" id="wstep-4">
+      <h4 style="margin-bottom:14px;color:#1799d1;">💰 Custos Internos</h4>
       <div class="form-row">
-        <div class="form-group">
-          <label>Cliente *</label>
-          <input type="text" class="form-control" id="ped-cliente" placeholder="Nome do cliente">
-        </div>
-        <div class="form-group">
-          <label>Data *</label>
-          <input type="date" class="form-control" id="ped-data">
-        </div>
+        <div class="form-group"><label>Custo Piloto (R$)</label><input type="number" class="form-control" id="orc-piloto" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()"></div>
+        <div class="form-group"><label>Custo Logística (R$)</label><input type="number" class="form-control" id="orc-logistica" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()"></div>
       </div>
-
-      <div class="form-group">
-        <label>Tipo de Serviço *</label>
-        <div class="btn-group" id="ped-servico-group">
-          <button class="btn-sel" onclick="selectPedServico('Imagens Aéreas',this);event.stopPropagation()">📸 Imagens Aéreas</button>
-          <button class="btn-sel" onclick="selectPedServico('Inspeção',this);event.stopPropagation()">🔍 Inspeção</button>
-          <button class="btn-sel" onclick="selectPedServico('Mapeamento',this);event.stopPropagation()">🗺️ Mapeamento</button>
-          <button class="btn-sel" onclick="selectPedServico('Eventos',this);event.stopPropagation()">🎉 Eventos</button>
-          <button class="btn-sel" onclick="selectPedServico('Locação s/ Op',this);event.stopPropagation()">🚁 Locação s/ Op</button>
-          <button class="btn-sel" onclick="selectPedServico('Locação c/ Op',this);event.stopPropagation()">👨‍✈️ Locação c/ Op</button>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Receita (R$) *</label>
-          <input type="number" class="form-control" id="ped-receita" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
-        </div>
-        <div class="form-group">
-          <label>Custo Piloto (R$)</label>
-          <input type="number" class="form-control" id="ped-piloto" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Imposto s/ Piloto</label>
-        <div class="btn-group" id="ped-imposto-group">
-          <button class="btn-sel selected" id="imp-0" onclick="selectImposto(0,this);event.stopPropagation()">0%</button>
-          <button class="btn-sel" id="imp-6"  onclick="selectImposto(6,this);event.stopPropagation()">6%</button>
-          <button class="btn-sel" id="imp-15" onclick="selectImposto(15,this);event.stopPropagation()">15%</button>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Custo Logística (R$)</label>
-          <input type="number" class="form-control" id="ped-logistica" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
-        </div>
-        <div class="form-group">
-          <label>Taxa Mercado Pago/PayPal (R$)</label>
-          <input type="number" class="form-control" id="ped-taxa" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Custo Equipamento (R$)</label>
-        <input type="number" class="form-control" id="ped-equip" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
-      </div>
-
-      <div class="calc-card" id="ped-calc-card">
-        <div class="calc-row"><span class="label">Imposto s/ Piloto</span><span class="val" id="cc-imposto">R$ 0,00</span></div>
-        <div class="calc-row"><span class="label">Custo Total</span><span class="val" id="cc-custo">R$ 0,00</span></div>
+      <div class="form-group"><label>Custo Equipamento (R$)</label><input type="number" class="form-control" id="orc-equip" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()"></div>
+      <div class="calc-card">
+        <div class="calc-row"><span class="label">Total Cliente</span><span class="val" id="orc4-total">R$ 0,00</span></div>
+        <div class="calc-row"><span class="label">Custo Total</span><span class="val" id="orc4-custo">R$ 0,00</span></div>
         <div class="calc-row total">
-          <span class="label">Margem</span>
-          <span id="cc-margem-pct" class="badge badge-green">0%</span>
-          <span class="val" id="cc-margem-val" style="margin-left:8px;">R$ 0,00</span>
+          <span class="label">Margem Estimada</span>
+          <span id="orc4-margem-pct" class="badge badge-green">0%</span>
+          <span class="val" id="orc4-margem-val" style="margin-left:8px;">R$ 0,00</span>
         </div>
       </div>
-
       <div class="form-actions" style="margin-top:16px;">
-        <button class="btn btn-primary" onclick="savePedido()">💾 Salvar Pedido</button>
-        <button class="btn btn-gray" onclick="togglePedForm(false)">Cancelar</button>
+        <button class="btn btn-gray" onclick="orcNext(3)">← Voltar</button>
+        <button class="btn btn-success" onclick="saveOrcamento()">💾 Gerar Orçamento</button>
+        <button class="btn btn-gray" onclick="toggleOrcForm(false)">✖ Cancelar</button>
       </div>
     </div>
+  </div>
+  <div id="orc-list"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+</section>
 
-    <div id="ped-list">
-      <div class="spinner-wrap"><div class="spinner"></div></div>
-    </div>
-  </section>
-
-  <!-- ═══ ORÇAMENTOS ══════════════════════════════════════ -->
-  <section id="page-orcamentos" class="page">
-    <div class="section-header">
-      <h2>📄 Orçamentos</h2>
-      <button class="btn btn-primary" onclick="toggleOrcForm()">+ Novo Orçamento</button>
-    </div>
-
-    <div class="form-area" id="orc-form-area">
-      <!-- Step Indicator -->
-      <div class="steps-indicator" id="steps-indicator">
-        <div class="step-dot active" id="sdot-1"><div class="dot">1</div><span class="step-label">Cliente</span></div>
-        <div class="step-line" id="sline-1"></div>
-        <div class="step-dot" id="sdot-2"><div class="dot">2</div><span class="step-label">Serviço</span></div>
-        <div class="step-line" id="sline-2"></div>
-        <div class="step-dot" id="sdot-3"><div class="dot">3</div><span class="step-label">Itens</span></div>
-        <div class="step-line" id="sline-3"></div>
-        <div class="step-dot" id="sdot-4"><div class="dot">4</div><span class="step-label">Custos</span></div>
-      </div>
-
-      <!-- Step 1 -->
-      <div class="wizard-step active" id="wstep-1">
-        <h4 style="margin-bottom:14px;color:#1799d1;">👤 Dados do Cliente</h4>
-        <div class="form-group">
-          <label>Nome *</label>
-          <input type="text" class="form-control" id="orc-nome" placeholder="Nome do cliente">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" id="orc-email" placeholder="email@exemplo.com">
-          </div>
-          <div class="form-group">
-            <label>Telefone</label>
-            <input type="text" class="form-control" id="orc-tel" placeholder="(00) 00000-0000">
-          </div>
-        </div>
-        <div class="form-actions">
-          <button class="btn btn-primary" onclick="orcNext(2)">Próximo →</button>
-          <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="wizard-step" id="wstep-2">
-        <h4 style="margin-bottom:14px;color:#1799d1;">🚁 Tipo de Serviço</h4>
-        <div class="btn-group" id="orc-servico-group">
-          <button class="btn-sel" onclick="selectOrcServico('Imagens Aéreas',this);event.stopPropagation()">📸 Imagens Aéreas</button>
-          <button class="btn-sel" onclick="selectOrcServico('Inspeção',this);event.stopPropagation()">🔍 Inspeção</button>
-          <button class="btn-sel" onclick="selectOrcServico('Mapeamento',this);event.stopPropagation()">🗺️ Mapeamento</button>
-          <button class="btn-sel" onclick="selectOrcServico('Eventos',this);event.stopPropagation()">🎉 Eventos</button>
-          <button class="btn-sel" onclick="selectOrcServico('Locação s/ Op',this);event.stopPropagation()">🚁 Locação s/ Op</button>
-          <button class="btn-sel" onclick="selectOrcServico('Locação c/ Op',this);event.stopPropagation()">👨‍✈️ Locação c/ Op</button>
-        </div>
-        <div class="form-actions">
-          <button class="btn btn-gray" onclick="orcNext(1)">← Voltar</button>
-          <button class="btn btn-primary" onclick="orcNext(3)">Próximo →</button>
-          <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="wizard-step" id="wstep-3">
-        <h4 style="margin-bottom:14px;color:#1799d1;">📋 Itens do Orçamento</h4>
-        <div id="orc-itens-list"></div>
-        <button class="btn btn-gray btn-sm" onclick="addOrcItem()" style="margin-bottom:16px;">+ Adicionar Item</button>
-
-        <div class="form-group">
-          <label>Desconto (%)</label>
-          <input type="number" class="form-control" id="orc-desconto" placeholder="0" min="0" max="100" step="0.1" oninput="calcOrcamento()" style="max-width:160px;">
-        </div>
-
-        <div class="calc-card">
-          <div class="calc-row"><span class="label">Subtotal</span><span class="val" id="orc-subtotal">R$ 0,00</span></div>
-          <div class="calc-row" id="orc-desc-row" style="display:none"><span class="label">Desconto</span><span class="val" id="orc-desc-val" style="color:#ef4444;">- R$ 0,00</span></div>
-          <div class="calc-row total"><span class="label">TOTAL CLIENTE</span><span class="val" id="orc-total" style="color:#1799d1;font-size:18px;">R$ 0,00</span></div>
-        </div>
-
-        <div class="form-actions">
-          <button class="btn btn-gray" onclick="orcNext(2)">← Voltar</button>
-          <button class="btn btn-primary" onclick="orcNext(4)">Próximo →</button>
-          <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="wizard-step" id="wstep-4">
-        <h4 style="margin-bottom:14px;color:#1799d1;">💰 Custos Internos</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Custo Piloto (R$)</label>
-            <input type="number" class="form-control" id="orc-piloto" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()">
-          </div>
-          <div class="form-group">
-            <label>Custo Logística (R$)</label>
-            <input type="number" class="form-control" id="orc-logistica" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Custo Equipamento (R$)</label>
-          <input type="number" class="form-control" id="orc-equip" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()">
-        </div>
-
-        <div class="calc-card">
-          <div class="calc-row"><span class="label">Total Cliente</span><span class="val" id="orc4-total">R$ 0,00</span></div>
-          <div class="calc-row"><span class="label">Custo Total</span><span class="val" id="orc4-custo">R$ 0,00</span></div>
-          <div class="calc-row total">
-            <span class="label">Margem Estimada</span>
-            <span id="orc4-margem-pct" class="badge badge-green">0%</span>
-            <span class="val" id="orc4-margem-val" style="margin-left:8px;">R$ 0,00</span>
-          </div>
-        </div>
-
-        <div class="form-actions" style="margin-top:16px;">
-          <button class="btn btn-gray" onclick="orcNext(3)">← Voltar</button>
-          <button class="btn btn-success" onclick="saveOrcamento()">💾 Gerar Orçamento</button>
-          <button class="btn btn-gray" onclick="toggleOrcForm(false)">✖ Cancelar</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="orc-list">
-      <div class="spinner-wrap"><div class="spinner"></div></div>
-    </div>
-  </section>
-
-  <!-- ═══ DRE ══════════════════════════════════════════════ -->
-  <section id="page-dre" class="page">
-    <div class="month-nav">
-      <button class="btn btn-gray btn-sm" onclick="dreChangeMonth(-1)">← Anterior</button>
-      <span id="dre-month-label">—</span>
-      <button class="btn btn-gray btn-sm" onclick="dreChangeMonth(1)">Próximo →</button>
-    </div>
-    <div class="card" id="dre-content">
-      <div class="spinner-wrap"><div class="spinner"></div></div>
-    </div>
-  </section>
+<!-- ═══ DRE ═══ -->
+<section id="page-dre" class="page">
+  <div class="month-nav">
+    <button class="btn btn-gray btn-sm" onclick="dreChangeMonth(-1)">← Anterior</button>
+    <span id="dre-month-label">—</span>
+    <button class="btn btn-gray btn-sm" onclick="dreChangeMonth(1)">Próximo →</button>
+  </div>
+  <div class="card" id="dre-content"><div class="spinner-wrap"><div class="spinner"></div></div></div>
+</section>
 
 </main>
 
+<!-- ═══ IMPORT MODAL ═══ -->
+<div class="modal-overlay" id="import-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>📥 Importar Dados do XLS</h3>
+      <p>Selecione o arquivo DASHBOARD.xlsx — o sistema importará automaticamente as abas 2024, 2025 e 2026.</p>
+    </div>
+    <div class="modal-body">
+      <div id="import-step-select">
+        <div style="border:2px dashed #e5e7eb;border-radius:10px;padding:30px;text-align:center;cursor:pointer;" onclick="document.getElementById('xls-file-input').click()">
+          <div style="font-size:36px;margin-bottom:8px;">📊</div>
+          <p style="font-size:14px;font-weight:500;margin-bottom:4px;">Clique para selecionar o arquivo</p>
+          <p style="font-size:12px;color:#aaa;">Suporte: .xlsx / .xls</p>
+        </div>
+      </div>
+      <div id="import-step-preview" style="display:none;">
+        <div id="import-year-select" class="import-year-toggle"></div>
+        <div id="import-preview-content"></div>
+        <div class="progress-bar" id="import-progress-bar" style="display:none;">
+          <div class="progress-bar-fill" id="import-progress-fill" style="width:0%"></div>
+        </div>
+        <p id="import-status" style="font-size:12px;color:#888;margin-top:6px;"></p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-gray" onclick="closeImportModal()">Fechar</button>
+      <button class="btn btn-primary" id="import-confirm-btn" style="display:none;" onclick="confirmImport()">✅ Importar Agora</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PDF PRINT AREA (hidden, revealed on print) ═══ -->
+<div id="pdf-print-area" style="display:none;"></div>
+
 <div id="toast"></div>
 
-<!-- FIREBASE -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<!-- SheetJS for XLS parsing -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
 
 <script>
-// ─── FIREBASE INIT ──────────────────────────────────────
+// ─── FIREBASE ─────────────────────────────────────────
 firebase.initializeApp({
   apiKey: "AIzaSyCXN022ug4NPEHt5MvOM7ZTTM9lpozKzGA",
   authDomain: "dash-asd.firebaseapp.com",
@@ -698,627 +570,733 @@ firebase.initializeApp({
 });
 const db = firebase.firestore();
 
-// ─── UTILS ──────────────────────────────────────────────
-function brl(n) {
-  return (n || 0).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
-}
+// ─── UTILS ─────────────────────────────────────────────
+function brl(n) { return (n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
 function fmtDate(ts) {
   if (!ts) return '—';
   const d = ts.toDate ? ts.toDate() : new Date(ts);
   return d.toLocaleDateString('pt-BR');
 }
-function todayStr() {
-  return new Date().toISOString().split('T')[0];
-}
+function todayStr() { return new Date().toISOString().split('T')[0]; }
 function marginBadgeClass(pct) {
   if (pct >= 40) return 'badge-green';
   if (pct >= 20) return 'badge-yellow';
   return 'badge-red';
 }
 
-let toastTimer;
+let _toastTimer;
 function showToast(msg, type='') {
   const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = 'show ' + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.className = '', 2800);
+  el.textContent = msg; el.className = 'show ' + type;
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.className = '', 2800);
 }
 
-// ─── NAVIGATION ─────────────────────────────────────────
-let currentPage = 'dashboard';
-let pageListeners = {};
-
+// ─── NAVIGATION ────────────────────────────────────────
 function showPage(id) {
   document.querySelectorAll('section.page').forEach(s => s.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  document.querySelectorAll('nav button').forEach((b, i) => {
-    const pages = ['dashboard','transacoes','pedidos','orcamentos','dre'];
-    b.classList.toggle('active', pages[i] === id);
+  document.querySelectorAll('nav button').forEach((b,i) => {
+    b.classList.toggle('active', ['dashboard','transacoes','pedidos','orcamentos','dre'][i] === id);
   });
-  currentPage = id;
   if (id === 'dre') renderDRE();
 }
 
-// ─── DASHBOARD ──────────────────────────────────────────
+// ─── DASHBOARD ─────────────────────────────────────────
 function dashInit() {
-  const now = new Date();
-  const y = now.getFullYear(), m = now.getMonth();
-  const start = new Date(y, m, 1);
-  const end   = new Date(y, m+1, 0, 23, 59, 59);
-  const monthName = now.toLocaleDateString('pt-BR', {month:'long', year:'numeric'});
-  document.getElementById('dash-month').textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-
+  const now = new Date(), y = now.getFullYear(), m = now.getMonth();
+  const start = new Date(y,m,1), end = new Date(y,m+1,0,23,59,59);
+  const lbl = now.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+  document.getElementById('dash-month').textContent = lbl.charAt(0).toUpperCase()+lbl.slice(1);
   db.collection('transactions')
-    .where('date', '>=', firebase.firestore.Timestamp.fromDate(start))
-    .where('date', '<=', firebase.firestore.Timestamp.fromDate(end))
+    .where('date','>=',firebase.firestore.Timestamp.fromDate(start))
+    .where('date','<=',firebase.firestore.Timestamp.fromDate(end))
     .onSnapshot(snap => {
-      let receita = 0, despesa = 0;
-      snap.forEach(d => {
-        const t = d.data();
-        if (t.type === 'receita') receita += t.amount || 0;
-        else despesa += t.amount || 0;
-      });
-      const lucro = receita - despesa;
-      const margem = receita > 0 ? (lucro / receita * 100) : 0;
-      const mg = document.getElementById('dash-metrics');
-      mg.innerHTML = `
-        <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">Receita</div><div class="metric-value green">${brl(receita)}</div></div>
-        <div class="metric-card"><div class="metric-icon">💸</div><div class="metric-label">Despesa</div><div class="metric-value red">${brl(despesa)}</div></div>
-        <div class="metric-card"><div class="metric-icon">📈</div><div class="metric-label">Lucro</div><div class="metric-value ${lucro >= 0 ? 'green' : 'red'}">${brl(lucro)}</div></div>
-        <div class="metric-card"><div class="metric-icon">🎯</div><div class="metric-label">Margem</div><div class="metric-value ${margem >= 40 ? 'green' : margem >= 20 ? 'blue' : 'red'}">${margem.toFixed(1)}%</div></div>
-      `;
-      document.getElementById('dash-summary').innerHTML = `
+      let rec=0, desp=0;
+      snap.forEach(d => { const t=d.data(); t.type==='receita' ? rec+=t.amount||0 : desp+=t.amount||0; });
+      const lucro=rec-desp, marg=rec>0?(lucro/rec*100):0;
+      document.getElementById('dash-metrics').innerHTML=`
+        <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">Receita</div><div class="metric-value green">${brl(rec)}</div></div>
+        <div class="metric-card"><div class="metric-icon">💸</div><div class="metric-label">Despesa</div><div class="metric-value red">${brl(desp)}</div></div>
+        <div class="metric-card"><div class="metric-icon">📈</div><div class="metric-label">Lucro</div><div class="metric-value ${lucro>=0?'green':'red'}">${brl(lucro)}</div></div>
+        <div class="metric-card"><div class="metric-icon">🎯</div><div class="metric-label">Margem</div><div class="metric-value ${marg>=40?'green':marg>=20?'blue':'red'}">${marg.toFixed(1)}%</div></div>`;
+      document.getElementById('dash-summary').innerHTML=`
         <div style="font-size:13px;color:#666;line-height:1.9;">
-          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0"><span>Receita Bruta</span><span style="color:#22c55e;font-weight:600;">${brl(receita)}</span></div>
-          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0"><span>Total Despesas</span><span style="color:#ef4444;font-weight:600;">${brl(despesa)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0"><span>Receita Bruta</span><span style="color:#22c55e;font-weight:600;">${brl(rec)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0"><span>Total Despesas</span><span style="color:#ef4444;font-weight:600;">${brl(desp)}</span></div>
           <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="font-weight:700;">Resultado</span><span style="color:${lucro>=0?'#22c55e':'#ef4444'};font-weight:700;font-size:16px;">${brl(lucro)}</span></div>
-        </div>
-      `;
-    }, err => {
-      document.getElementById('dash-metrics').innerHTML = `<p style="color:#ef4444;grid-column:span 2">${err.message}</p>`;
-    });
+        </div>`;
+    }, err => { document.getElementById('dash-metrics').innerHTML=`<p style="color:#ef4444;grid-column:span 2">${err.message}</p>`; });
 }
 
-// ─── TRANSAÇÕES ─────────────────────────────────────────
-const CATS_RECEITA = [
-  {k:'Serviços',e:'💼'},{k:'Locação',e:'🚁'},{k:'Cursos',e:'🎓'},{k:'Outros',e:'📦'}
-];
+// ─── TRANSAÇÕES ────────────────────────────────────────
+const CATS_RECEITA = [{k:'Serviços',e:'💼'},{k:'Locação',e:'🚁'},{k:'Cursos',e:'🎓'},{k:'Outros',e:'📦'}];
 const CATS_DESPESA = [
   {k:'Pilotos',e:'👨‍✈️'},{k:'Logística',e:'📦'},{k:'Equipamentos',e:'🔧'},
   {k:'Aluguel',e:'🏢'},{k:'Pessoal',e:'👥'},{k:'Marketing',e:'📢'},
   {k:'Administrativo',e:'📋'},{k:'Taxas Pagamento',e:'💳'},{k:'Impostos',e:'🏛️'}
 ];
-
-let trTipo = '', trCat = '';
+let trTipo='', trCat='';
 
 function toggleTrForm(open) {
   const a = document.getElementById('tr-form-area');
-  if (open === false) { a.classList.remove('open'); resetTrForm(); return; }
+  if (open===false) { a.classList.remove('open'); resetTrForm(); return; }
   a.classList.toggle('open');
-  if (a.classList.contains('open')) {
-    document.getElementById('tr-data').value = todayStr();
-  }
+  if (a.classList.contains('open')) document.getElementById('tr-data').value = todayStr();
 }
-
 function resetTrForm() {
-  trTipo = ''; trCat = '';
-  document.getElementById('tr-valor').value = '';
-  document.getElementById('tr-desc').value = '';
-  document.getElementById('tr-data').value = '';
-  document.querySelectorAll('#tr-tipo-group .btn-sel').forEach(b => b.classList.remove('selected'));
-  document.getElementById('tr-cat-group').style.display = 'none';
+  trTipo=''; trCat='';
+  ['tr-valor','tr-desc','tr-data'].forEach(id => document.getElementById(id).value='');
+  document.querySelectorAll('#tr-tipo-group .btn-sel').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('tr-cat-group').style.display='none';
 }
-
-function selectTrTipo(tipo, btn) {
-  trTipo = tipo; trCat = '';
-  document.querySelectorAll('#tr-tipo-group .btn-sel').forEach(b => b.classList.remove('selected'));
+function selectTrTipo(tipo,btn) {
+  trTipo=tipo; trCat='';
+  document.querySelectorAll('#tr-tipo-group .btn-sel').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
-  const cats = tipo === 'receita' ? CATS_RECEITA : CATS_DESPESA;
-  const btns = cats.map(c =>
-    `<button class="btn-sel" onclick="selectTrCat('${c.k}',this);event.stopPropagation()">${c.e} ${c.k}</button>`
-  ).join('');
-  document.getElementById('tr-cat-buttons').innerHTML = btns;
-  document.getElementById('tr-cat-group').style.display = 'block';
+  const cats = tipo==='receita'?CATS_RECEITA:CATS_DESPESA;
+  document.getElementById('tr-cat-buttons').innerHTML = cats.map(c=>
+    `<button class="btn-sel" onclick="selectTrCat('${c.k}',this);event.stopPropagation()">${c.e} ${c.k}</button>`).join('');
+  document.getElementById('tr-cat-group').style.display='block';
 }
-
-function selectTrCat(cat, btn) {
-  trCat = cat;
-  document.querySelectorAll('#tr-cat-buttons .btn-sel').forEach(b => b.classList.remove('selected'));
+function selectTrCat(cat,btn) {
+  trCat=cat;
+  document.querySelectorAll('#tr-cat-buttons .btn-sel').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
 }
-
 async function saveTr() {
-  if (!trTipo) { showToast('Selecione o tipo', 'error'); return; }
-  if (!trCat)  { showToast('Selecione a categoria', 'error'); return; }
-  const val  = parseFloat(document.getElementById('tr-valor').value);
-  const desc = document.getElementById('tr-desc').value.trim();
-  const date = document.getElementById('tr-data').value;
-  if (!val || val <= 0) { showToast('Informe um valor válido', 'error'); return; }
-  if (!desc) { showToast('Informe a descrição', 'error'); return; }
-  if (!date) { showToast('Informe a data', 'error'); return; }
+  if (!trTipo) { showToast('Selecione o tipo','error'); return; }
+  if (!trCat)  { showToast('Selecione a categoria','error'); return; }
+  const val=parseFloat(document.getElementById('tr-valor').value);
+  const desc=document.getElementById('tr-desc').value.trim();
+  const date=document.getElementById('tr-data').value;
+  if (!val||val<=0) { showToast('Informe um valor válido','error'); return; }
+  if (!desc) { showToast('Informe a descrição','error'); return; }
+  if (!date) { showToast('Informe a data','error'); return; }
   try {
     await db.collection('transactions').add({
-      type: trTipo, category: trCat, amount: val,
-      description: desc,
-      date: firebase.firestore.Timestamp.fromDate(new Date(date + 'T12:00:00')),
-      created_at: firebase.firestore.FieldValue.serverTimestamp()
+      type:trTipo, category:trCat, amount:val, description:desc,
+      date:firebase.firestore.Timestamp.fromDate(new Date(date+'T12:00:00')),
+      created_at:firebase.firestore.FieldValue.serverTimestamp()
     });
-    showToast('Transação salva!', 'success');
-    toggleTrForm(false);
-  } catch(e) { showToast(e.message, 'error'); }
+    showToast('Transação salva!','success'); toggleTrForm(false);
+  } catch(e) { showToast(e.message,'error'); }
 }
-
 async function deleteTr(id) {
   if (!confirm('Excluir esta transação?')) return;
-  try {
-    await db.collection('transactions').doc(id).delete();
-    showToast('Excluído!');
-  } catch(e) { showToast(e.message, 'error'); }
+  try { await db.collection('transactions').doc(id).delete(); showToast('Excluído!'); }
+  catch(e) { showToast(e.message,'error'); }
 }
-
 function trInit() {
-  db.collection('transactions').orderBy('date','desc').limit(50)
-    .onSnapshot(snap => {
-      const el = document.getElementById('tr-list');
-      if (snap.empty) {
-        el.innerHTML = `<div class="empty-state"><div class="empty-icon">💸</div><p>Nenhuma transação encontrada. Clique em '+ Nova Transação' para começar.</p></div>`;
-        return;
-      }
-      const getCatEmoji = (type, cat) => {
-        const list = type === 'receita' ? CATS_RECEITA : CATS_DESPESA;
-        const f = list.find(c => c.k === cat);
-        return f ? f.e : '📌';
-      };
-      let html = '<div class="list-header">Transações recentes</div>';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const em = getCatEmoji(d.type, d.category);
-        html += `
-          <div class="list-item">
-            <div class="item-icon">${em}</div>
-            <div class="item-main">
-              <div class="item-title">${d.description || '—'}</div>
-              <div class="item-subtitle">${d.category} · ${fmtDate(d.date)}</div>
-            </div>
-            <div class="item-amount ${d.type === 'receita' ? 'green' : 'red'}">${brl(d.amount)}</div>
-            <button class="btn-icon" onclick="deleteTr('${doc.id}')" title="Excluir">🗑️</button>
-          </div>`;
-      });
-      el.innerHTML = html;
-    }, err => {
-      document.getElementById('tr-list').innerHTML = `<p style="padding:16px;color:#ef4444;">${err.message}</p>`;
+  db.collection('transactions').orderBy('date','desc').limit(50).onSnapshot(snap => {
+    const el=document.getElementById('tr-list');
+    if (snap.empty) { el.innerHTML=`<div class="empty-state"><div class="empty-icon">💸</div><p>Nenhuma transação encontrada. Clique em '+ Nova Transação' para começar.</p></div>`; return; }
+    const getCatEmoji=(type,cat)=>{ const l=type==='receita'?CATS_RECEITA:CATS_DESPESA; const f=l.find(c=>c.k===cat); return f?f.e:'📌'; };
+    let html='<div class="list-header">Transações recentes</div>';
+    snap.forEach(doc => {
+      const d=doc.data();
+      html+=`<div class="list-item">
+        <div class="item-icon">${getCatEmoji(d.type,d.category)}</div>
+        <div class="item-main"><div class="item-title">${d.description||'—'}</div><div class="item-subtitle">${d.category||'—'} · ${fmtDate(d.date)}</div></div>
+        <div class="item-amount ${d.type==='receita'?'green':'red'}">${brl(d.amount)}</div>
+        <button class="btn-icon" onclick="deleteTr('${doc.id}')" title="Excluir">🗑️</button>
+      </div>`;
     });
+    el.innerHTML=html;
+  }, err => { document.getElementById('tr-list').innerHTML=`<p style="padding:16px;color:#ef4444;">${err.message}</p>`; });
 }
 
-// ─── PEDIDOS ────────────────────────────────────────────
-let pedServico = '', pedImposto = 0;
-
+// ─── PEDIDOS ───────────────────────────────────────────
+let pedServico='', pedImposto=0;
 function togglePedForm(open) {
-  const a = document.getElementById('ped-form-area');
-  if (open === false) { a.classList.remove('open'); resetPedForm(); return; }
+  const a=document.getElementById('ped-form-area');
+  if (open===false) { a.classList.remove('open'); resetPedForm(); return; }
   a.classList.toggle('open');
-  if (a.classList.contains('open')) {
-    document.getElementById('ped-data').value = todayStr();
-  }
+  if (a.classList.contains('open')) document.getElementById('ped-data').value=todayStr();
 }
-
 function resetPedForm() {
-  pedServico = ''; pedImposto = 0;
-  ['ped-cliente','ped-receita','ped-piloto','ped-logistica','ped-taxa','ped-equip'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('ped-data').value = '';
-  document.querySelectorAll('#ped-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
-  document.querySelectorAll('#ped-imposto-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  pedServico=''; pedImposto=0;
+  ['ped-cliente','ped-receita','ped-piloto','ped-logistica','ped-taxa','ped-equip','ped-data'].forEach(id=>document.getElementById(id).value='');
+  document.querySelectorAll('#ped-servico-group .btn-sel').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('#ped-imposto-group .btn-sel').forEach(b=>b.classList.remove('selected'));
   document.getElementById('imp-0').classList.add('selected');
   calcPedido();
 }
-
-function selectPedServico(s, btn) {
-  pedServico = s;
-  document.querySelectorAll('#ped-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
+function selectPedServico(s,btn) {
+  pedServico=s;
+  document.querySelectorAll('#ped-servico-group .btn-sel').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
-  // Auto-select imposto
-  if (s === 'Locação s/ Op') selectImposto(6, document.getElementById('imp-6'));
-  else if (s === 'Locação c/ Op') selectImposto(15, document.getElementById('imp-15'));
-  else selectImposto(0, document.getElementById('imp-0'));
+  if (s==='Locação s/ Op') selectImposto(6,document.getElementById('imp-6'));
+  else if (s==='Locação c/ Op') selectImposto(15,document.getElementById('imp-15'));
+  else selectImposto(0,document.getElementById('imp-0'));
   calcPedido();
 }
-
-function selectImposto(pct, btn) {
-  pedImposto = pct;
-  document.querySelectorAll('#ped-imposto-group .btn-sel').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  calcPedido();
+function selectImposto(pct,btn) {
+  pedImposto=pct;
+  document.querySelectorAll('#ped-imposto-group .btn-sel').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected'); calcPedido();
 }
-
 function calcPedido() {
-  const rec   = parseFloat(document.getElementById('ped-receita').value) || 0;
-  const pilot = parseFloat(document.getElementById('ped-piloto').value) || 0;
-  const logis = parseFloat(document.getElementById('ped-logistica').value) || 0;
-  const taxa  = parseFloat(document.getElementById('ped-taxa').value) || 0;
-  const equip = parseFloat(document.getElementById('ped-equip').value) || 0;
-  const impV  = pilot * (pedImposto / 100);
-  const custo = pilot + impV + logis + taxa + equip;
-  const margV = rec - custo;
-  const margP = rec > 0 ? (margV / rec * 100) : 0;
-  document.getElementById('cc-imposto').textContent = brl(impV);
-  document.getElementById('cc-custo').textContent   = brl(custo);
-  document.getElementById('cc-margem-val').textContent = brl(margV);
-  const pctEl = document.getElementById('cc-margem-pct');
-  pctEl.textContent = margP.toFixed(1) + '%';
-  pctEl.className = 'badge ' + marginBadgeClass(margP);
+  const rec=parseFloat(document.getElementById('ped-receita').value)||0;
+  const pilot=parseFloat(document.getElementById('ped-piloto').value)||0;
+  const logis=parseFloat(document.getElementById('ped-logistica').value)||0;
+  const taxa=parseFloat(document.getElementById('ped-taxa').value)||0;
+  const equip=parseFloat(document.getElementById('ped-equip').value)||0;
+  const impV=pilot*(pedImposto/100);
+  const custo=pilot+impV+logis+taxa+equip;
+  const margV=rec-custo, margP=rec>0?(margV/rec*100):0;
+  document.getElementById('cc-imposto').textContent=brl(impV);
+  document.getElementById('cc-custo').textContent=brl(custo);
+  document.getElementById('cc-margem-val').textContent=brl(margV);
+  const pe=document.getElementById('cc-margem-pct');
+  pe.textContent=margP.toFixed(1)+'%'; pe.className='badge '+marginBadgeClass(margP);
 }
-
 async function savePedido() {
-  if (!pedServico) { showToast('Selecione o tipo de serviço', 'error'); return; }
-  const cliente = document.getElementById('ped-cliente').value.trim();
-  const date    = document.getElementById('ped-data').value;
-  const rec     = parseFloat(document.getElementById('ped-receita').value) || 0;
-  const pilot   = parseFloat(document.getElementById('ped-piloto').value) || 0;
-  const logis   = parseFloat(document.getElementById('ped-logistica').value) || 0;
-  const taxa    = parseFloat(document.getElementById('ped-taxa').value) || 0;
-  const equip   = parseFloat(document.getElementById('ped-equip').value) || 0;
-  if (!cliente) { showToast('Informe o cliente', 'error'); return; }
-  if (!date)    { showToast('Informe a data', 'error'); return; }
-  if (rec <= 0) { showToast('Informe a receita', 'error'); return; }
-  const impV  = pilot * (pedImposto / 100);
-  const custo = pilot + impV + logis + taxa + equip;
-  const margV = rec - custo;
-  const margP = rec > 0 ? (margV / rec * 100) : 0;
+  if (!pedServico) { showToast('Selecione o tipo de serviço','error'); return; }
+  const cliente=document.getElementById('ped-cliente').value.trim();
+  const date=document.getElementById('ped-data').value;
+  const rec=parseFloat(document.getElementById('ped-receita').value)||0;
+  const pilot=parseFloat(document.getElementById('ped-piloto').value)||0;
+  const logis=parseFloat(document.getElementById('ped-logistica').value)||0;
+  const taxa=parseFloat(document.getElementById('ped-taxa').value)||0;
+  const equip=parseFloat(document.getElementById('ped-equip').value)||0;
+  if (!cliente){showToast('Informe o cliente','error');return;}
+  if (!date){showToast('Informe a data','error');return;}
+  if (rec<=0){showToast('Informe a receita','error');return;}
+  const impV=pilot*(pedImposto/100),custo=pilot+impV+logis+taxa+equip,margV=rec-custo,margP=rec>0?(margV/rec*100):0;
   try {
     await db.collection('pedidos').add({
-      date: firebase.firestore.Timestamp.fromDate(new Date(date + 'T12:00:00')),
-      cliente, servico: pedServico, receita: rec,
-      custo_piloto: pilot, imposto_percentual: pedImposto, imposto_valor: impV,
-      custo_logistica: logis, taxa_pagamento: taxa, custo_equipamento: equip,
-      custos_totais: custo, margem_valor: margV, margem_percentual: margP,
-      status: 'concluido',
-      created_at: firebase.firestore.FieldValue.serverTimestamp()
+      date:firebase.firestore.Timestamp.fromDate(new Date(date+'T12:00:00')),
+      cliente,servico:pedServico,receita:rec,custo_piloto:pilot,imposto_percentual:pedImposto,
+      imposto_valor:impV,custo_logistica:logis,taxa_pagamento:taxa,custo_equipamento:equip,
+      custos_totais:custo,margem_valor:margV,margem_percentual:margP,status:'concluido',
+      created_at:firebase.firestore.FieldValue.serverTimestamp()
     });
-    showToast('Pedido salvo!', 'success');
-    togglePedForm(false);
-  } catch(e) { showToast(e.message, 'error'); }
+    showToast('Pedido salvo!','success'); togglePedForm(false);
+  } catch(e){showToast(e.message,'error');}
 }
-
 async function deletePedido(id) {
   if (!confirm('Excluir este pedido?')) return;
-  try {
-    await db.collection('pedidos').doc(id).delete();
-    showToast('Excluído!');
-  } catch(e) { showToast(e.message, 'error'); }
+  try{await db.collection('pedidos').doc(id).delete();showToast('Excluído!');}
+  catch(e){showToast(e.message,'error');}
 }
-
 function pedInit() {
-  db.collection('pedidos').orderBy('date','desc').limit(50)
-    .onSnapshot(snap => {
-      const el = document.getElementById('ped-list');
-      if (snap.empty) {
-        el.innerHTML = `<div class="empty-state"><div class="empty-icon">📦</div><p>Nenhum pedido encontrado. Clique em '+ Novo Pedido' para começar.</p></div>`;
-        return;
-      }
-      let html = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const bc = marginBadgeClass(d.margem_percentual || 0);
-        html += `
-          <div class="pedido-card">
-            <div class="p-info">
-              <div class="p-title">${d.cliente || '—'}</div>
-              <div class="p-sub">${d.servico || '—'} · ${fmtDate(d.date)}</div>
-            </div>
-            <div class="p-right">
-              <span class="badge ${bc}">${(d.margem_percentual||0).toFixed(1)}%</span>
-              <div class="p-margem-val">${brl(d.margem_valor)}</div>
-            </div>
-            <button class="btn-icon" onclick="deletePedido('${doc.id}')" title="Excluir">🗑️</button>
-          </div>`;
-      });
-      el.innerHTML = html;
-    }, err => {
-      document.getElementById('ped-list').innerHTML = `<p style="color:#ef4444;padding:16px;">${err.message}</p>`;
+  db.collection('pedidos').orderBy('date','desc').limit(50).onSnapshot(snap => {
+    const el=document.getElementById('ped-list');
+    if (snap.empty){el.innerHTML=`<div class="empty-state"><div class="empty-icon">📦</div><p>Nenhum pedido encontrado. Clique em '+ Novo Pedido' para começar.</p></div>`;return;}
+    let html='';
+    snap.forEach(doc=>{
+      const d=doc.data(), bc=marginBadgeClass(d.margem_percentual||0);
+      html+=`<div class="pedido-card">
+        <div class="p-info"><div class="p-title">${d.cliente||'—'}</div><div class="p-sub">${d.servico||'—'} · ${fmtDate(d.date)}</div></div>
+        <div class="p-right"><span class="badge ${bc}">${(d.margem_percentual||0).toFixed(1)}%</span><div class="p-margem-val">${brl(d.margem_valor)}</div></div>
+        <button class="btn-icon" onclick="deletePedido('${doc.id}')" title="Excluir">🗑️</button>
+      </div>`;
     });
+    el.innerHTML=html;
+  }, err=>{document.getElementById('ped-list').innerHTML=`<p style="color:#ef4444;padding:16px;">${err.message}</p>`;});
 }
 
-// ─── ORÇAMENTOS ─────────────────────────────────────────
-let orcStep = 1, orcServico = '';
-let orcData = { nome:'', email:'', tel:'', itens:[] };
+// ─── ORÇAMENTOS ────────────────────────────────────────
+let orcStep=1, orcServico='', orcData={nome:'',email:'',tel:'',itens:[]};
+let _orcCache = {}; // cache de orçamentos para PDF/share
 
 function toggleOrcForm(open) {
-  const a = document.getElementById('orc-form-area');
-  if (open === false) { a.classList.remove('open'); resetOrcForm(); return; }
+  const a=document.getElementById('orc-form-area');
+  if (open===false){a.classList.remove('open');resetOrcForm();return;}
   a.classList.toggle('open');
   if (a.classList.contains('open')) resetOrcForm();
 }
-
 function resetOrcForm() {
-  orcStep = 1; orcServico = '';
-  orcData = { nome:'', email:'', tel:'', itens:[] };
-  ['orc-nome','orc-email','orc-tel','orc-desconto','orc-piloto','orc-logistica','orc-equip'].forEach(id => {
-    const el = document.getElementById(id); if (el) el.value = '';
-  });
-  document.querySelectorAll('#orc-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
-  document.getElementById('orc-itens-list').innerHTML = '';
-  updateOrcSteps();
-  calcOrcamento();
+  orcStep=1;orcServico='';orcData={nome:'',email:'',tel:'',itens:[]};
+  ['orc-nome','orc-email','orc-tel','orc-desconto','orc-piloto','orc-logistica','orc-equip'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.querySelectorAll('#orc-servico-group .btn-sel').forEach(b=>b.classList.remove('selected'));
+  document.getElementById('orc-itens-list').innerHTML='';
+  updateOrcSteps();calcOrcamento();
 }
-
 function updateOrcSteps() {
-  for (let i = 1; i <= 4; i++) {
-    const dot = document.getElementById('sdot-' + i);
+  for(let i=1;i<=4;i++){
+    const dot=document.getElementById('sdot-'+i);
     dot.classList.remove('active','done');
-    if (i < orcStep) dot.classList.add('done');
-    else if (i === orcStep) dot.classList.add('active');
-    const line = document.getElementById('sline-' + i);
-    if (line) line.classList.toggle('done', i < orcStep);
-    document.getElementById('wstep-' + i).classList.toggle('active', i === orcStep);
+    if(i<orcStep)dot.classList.add('done');
+    else if(i===orcStep)dot.classList.add('active');
+    const line=document.getElementById('sline-'+i);
+    if(line)line.classList.toggle('done',i<orcStep);
+    document.getElementById('wstep-'+i).classList.toggle('active',i===orcStep);
   }
 }
-
-function selectOrcServico(s, btn) {
-  orcServico = s;
-  document.querySelectorAll('#orc-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
+function selectOrcServico(s,btn){
+  orcServico=s;
+  document.querySelectorAll('#orc-servico-group .btn-sel').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
 }
-
-function orcNext(step) {
-  if (step > orcStep) {
-    if (orcStep === 1) {
-      const nome = document.getElementById('orc-nome').value.trim();
-      if (!nome) { showToast('Informe o nome do cliente', 'error'); return; }
-      orcData.nome  = nome;
-      orcData.email = document.getElementById('orc-email').value.trim();
-      orcData.tel   = document.getElementById('orc-tel').value.trim();
-    } else if (orcStep === 2) {
-      if (!orcServico) { showToast('Selecione o tipo de serviço', 'error'); return; }
-    } else if (orcStep === 3) {
-      if (orcData.itens.length === 0) { showToast('Adicione ao menos 1 item', 'error'); return; }
+function orcNext(step){
+  if(step>orcStep){
+    if(orcStep===1){
+      const nome=document.getElementById('orc-nome').value.trim();
+      if(!nome){showToast('Informe o nome do cliente','error');return;}
+      orcData.nome=nome;orcData.email=document.getElementById('orc-email').value.trim();orcData.tel=document.getElementById('orc-tel').value.trim();
+    }else if(orcStep===2){
+      if(!orcServico){showToast('Selecione o tipo de serviço','error');return;}
+    }else if(orcStep===3){
+      if(orcData.itens.length===0){showToast('Adicione ao menos 1 item','error');return;}
     }
   }
-  orcStep = step;
-  updateOrcSteps();
-  if (orcStep === 4) {
-    calcOrcamento();
-    document.getElementById('orc4-total').textContent = document.getElementById('orc-total').textContent;
-    calcOrcCustos();
-  }
+  orcStep=step;updateOrcSteps();
+  if(orcStep===4){calcOrcamento();document.getElementById('orc4-total').textContent=document.getElementById('orc-total').textContent;calcOrcCustos();}
 }
-
-function addOrcItem() {
-  const idx = orcData.itens.length;
-  orcData.itens.push({ descricao: '', valor: 0 });
-  const list = document.getElementById('orc-itens-list');
-  const row = document.createElement('div');
-  row.className = 'orcamento-item-row';
-  row.id = 'orc-item-' + idx;
-  row.innerHTML = `
-    <input type="text" class="form-control" placeholder="Descrição do item" oninput="orcItemChange(${idx},'d',this.value)">
+function addOrcItem(){
+  const idx=orcData.itens.length;
+  orcData.itens.push({descricao:'',valor:0});
+  const list=document.getElementById('orc-itens-list');
+  const row=document.createElement('div');
+  row.className='orcamento-item-row';row.id='orc-item-'+idx;
+  row.innerHTML=`<input type="text" class="form-control" placeholder="Descrição do item" oninput="orcItemChange(${idx},'d',this.value)">
     <input type="number" class="form-control val-input" placeholder="R$ 0,00" min="0" step="0.01" oninput="orcItemChange(${idx},'v',this.value)">
-    <button class="btn-icon" onclick="removeOrcItem(${idx})">🗑️</button>
-  `;
+    <button class="btn-icon" onclick="removeOrcItem(${idx})">🗑️</button>`;
   list.appendChild(row);
 }
-
-function orcItemChange(idx, field, val) {
-  if (!orcData.itens[idx]) return;
-  if (field === 'd') orcData.itens[idx].descricao = val;
-  else orcData.itens[idx].valor = parseFloat(val) || 0;
+function orcItemChange(idx,field,val){
+  if(!orcData.itens[idx])return;
+  if(field==='d')orcData.itens[idx].descricao=val;
+  else orcData.itens[idx].valor=parseFloat(val)||0;
   calcOrcamento();
 }
-
-function removeOrcItem(idx) {
-  orcData.itens.splice(idx, 1);
-  // Re-render all items
-  const list = document.getElementById('orc-itens-list');
-  list.innerHTML = '';
-  const saved = [...orcData.itens];
-  orcData.itens = [];
-  saved.forEach(item => {
-    addOrcItem();
-    const idx2 = orcData.itens.length - 1;
-    orcData.itens[idx2] = item;
-    const row = document.getElementById('orc-item-' + idx2);
-    if (row) {
-      row.querySelector('input[type=text]').value = item.descricao;
-      row.querySelector('input[type=number]').value = item.valor || '';
-    }
+function removeOrcItem(idx){
+  orcData.itens.splice(idx,1);
+  const list=document.getElementById('orc-itens-list');list.innerHTML='';
+  const saved=[...orcData.itens];orcData.itens=[];
+  saved.forEach(item=>{
+    addOrcItem();const idx2=orcData.itens.length-1;orcData.itens[idx2]=item;
+    const row=document.getElementById('orc-item-'+idx2);
+    if(row){row.querySelector('input[type=text]').value=item.descricao;row.querySelector('input[type=number]').value=item.valor||'';}
   });
   calcOrcamento();
 }
-
-function calcOrcamento() {
-  const sub = orcData.itens.reduce((s, it) => s + (it.valor || 0), 0);
-  const desc = parseFloat(document.getElementById('orc-desconto')?.value) || 0;
-  const descVal = sub * (desc / 100);
-  const total = sub - descVal;
-  const subEl = document.getElementById('orc-subtotal');
-  if (subEl) subEl.textContent = brl(sub);
-  const descRow = document.getElementById('orc-desc-row');
-  const descValEl = document.getElementById('orc-desc-val');
-  if (descRow) descRow.style.display = desc > 0 ? 'flex' : 'none';
-  if (descValEl) descValEl.textContent = '- ' + brl(descVal);
-  const totalEl = document.getElementById('orc-total');
-  if (totalEl) totalEl.textContent = brl(total);
-  return { sub, descVal, total };
+function calcOrcamento(){
+  const sub=orcData.itens.reduce((s,it)=>s+(it.valor||0),0);
+  const desc=parseFloat(document.getElementById('orc-desconto')?.value)||0;
+  const descVal=sub*(desc/100),total=sub-descVal;
+  const se=document.getElementById('orc-subtotal');if(se)se.textContent=brl(sub);
+  const dr=document.getElementById('orc-desc-row');const dv=document.getElementById('orc-desc-val');
+  if(dr)dr.style.display=desc>0?'flex':'none';if(dv)dv.textContent='- '+brl(descVal);
+  const te=document.getElementById('orc-total');if(te)te.textContent=brl(total);
+  return{sub,descVal,total};
 }
-
-function calcOrcCustos() {
-  const { total } = calcOrcamento();
-  const piloto = parseFloat(document.getElementById('orc-piloto')?.value) || 0;
-  const logis  = parseFloat(document.getElementById('orc-logistica')?.value) || 0;
-  const equip  = parseFloat(document.getElementById('orc-equip')?.value) || 0;
-  const custo  = piloto + logis + equip;
-  const margV  = total - custo;
-  const margP  = total > 0 ? (margV / total * 100) : 0;
-  const t4 = document.getElementById('orc4-total');
-  const c4 = document.getElementById('orc4-custo');
-  const mv = document.getElementById('orc4-margem-val');
-  const mp = document.getElementById('orc4-margem-pct');
-  if (t4) t4.textContent = brl(total);
-  if (c4) c4.textContent = brl(custo);
-  if (mv) mv.textContent = brl(margV);
-  if (mp) { mp.textContent = margP.toFixed(1) + '%'; mp.className = 'badge ' + marginBadgeClass(margP); }
+function calcOrcCustos(){
+  const{total}=calcOrcamento();
+  const piloto=parseFloat(document.getElementById('orc-piloto')?.value)||0;
+  const logis=parseFloat(document.getElementById('orc-logistica')?.value)||0;
+  const equip=parseFloat(document.getElementById('orc-equip')?.value)||0;
+  const custo=piloto+logis+equip,margV=total-custo,margP=total>0?(margV/total*100):0;
+  const t4=document.getElementById('orc4-total');if(t4)t4.textContent=brl(total);
+  const c4=document.getElementById('orc4-custo');if(c4)c4.textContent=brl(custo);
+  const mv=document.getElementById('orc4-margem-val');if(mv)mv.textContent=brl(margV);
+  const mp=document.getElementById('orc4-margem-pct');if(mp){mp.textContent=margP.toFixed(1)+'%';mp.className='badge '+marginBadgeClass(margP);}
 }
-
-async function saveOrcamento() {
-  const { sub, descVal, total } = calcOrcamento();
-  if (!orcData.nome) { showToast('Dados do cliente incompletos', 'error'); return; }
-  if (!orcServico)   { showToast('Selecione o serviço', 'error'); return; }
-  if (orcData.itens.length === 0) { showToast('Adicione itens', 'error'); return; }
-  const piloto = parseFloat(document.getElementById('orc-piloto')?.value) || 0;
-  const logis  = parseFloat(document.getElementById('orc-logistica')?.value) || 0;
-  const equip  = parseFloat(document.getElementById('orc-equip')?.value) || 0;
-  const custo  = piloto + logis + equip;
-  const margV  = total - custo;
-  const desc   = parseFloat(document.getElementById('orc-desconto')?.value) || 0;
-  try {
+async function saveOrcamento(){
+  const{sub,descVal,total}=calcOrcamento();
+  if(!orcData.nome){showToast('Dados do cliente incompletos','error');return;}
+  if(!orcServico){showToast('Selecione o serviço','error');return;}
+  if(orcData.itens.length===0){showToast('Adicione itens','error');return;}
+  const piloto=parseFloat(document.getElementById('orc-piloto')?.value)||0;
+  const logis=parseFloat(document.getElementById('orc-logistica')?.value)||0;
+  const equip=parseFloat(document.getElementById('orc-equip')?.value)||0;
+  const custo=piloto+logis+equip,margV=total-custo;
+  const desc=parseFloat(document.getElementById('orc-desconto')?.value)||0;
+  try{
     await db.collection('orcamentos').add({
-      created_at: firebase.firestore.FieldValue.serverTimestamp(),
-      cliente: { nome: orcData.nome, email: orcData.email, telefone: orcData.tel },
-      servico: orcServico,
-      itens: orcData.itens,
-      subtotal: sub,
-      desconto: desc,
-      total_cliente: total,
-      custo_interno: { piloto, logistica: logis, equipamento: equip },
-      custo_total: custo,
-      margem_estimada: total > 0 ? (margV / total * 100) : 0,
-      status: 'enviado'
+      created_at:firebase.firestore.FieldValue.serverTimestamp(),
+      cliente:{nome:orcData.nome,email:orcData.email,telefone:orcData.tel},
+      servico:orcServico,itens:orcData.itens,subtotal:sub,desconto:desc,total_cliente:total,
+      custo_interno:{piloto,logistica:logis,equipamento:equip},custo_total:custo,
+      margem_estimada:total>0?(margV/total*100):0,status:'enviado'
     });
-    showToast('Orçamento gerado!', 'success');
-    toggleOrcForm(false);
-  } catch(e) { showToast(e.message, 'error'); }
+    showToast('Orçamento gerado!','success');toggleOrcForm(false);
+  }catch(e){showToast(e.message,'error');}
 }
-
-async function deleteOrcamento(id) {
-  if (!confirm('Excluir este orçamento?')) return;
-  try {
-    await db.collection('orcamentos').doc(id).delete();
-    showToast('Excluído!');
-  } catch(e) { showToast(e.message, 'error'); }
+async function deleteOrcamento(id){
+  if(!confirm('Excluir este orçamento?'))return;
+  try{await db.collection('orcamentos').doc(id).delete();showToast('Excluído!');}
+  catch(e){showToast(e.message,'error');}
 }
-
-function orcInit() {
-  db.collection('orcamentos').orderBy('created_at','desc').limit(50)
-    .onSnapshot(snap => {
-      const el = document.getElementById('orc-list');
-      if (snap.empty) {
-        el.innerHTML = `<div class="empty-state"><div class="empty-icon">📄</div><p>Nenhum orçamento encontrado. Clique em '+ Novo Orçamento' para começar.</p></div>`;
-        return;
-      }
-      let html = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const bc = marginBadgeClass(d.margem_estimada || 0);
-        html += `
-          <div class="pedido-card">
-            <div class="p-info">
-              <div class="p-title">${d.cliente?.nome || '—'}</div>
-              <div class="p-sub">${d.servico || '—'} · ${fmtDate(d.created_at)}</div>
-            </div>
-            <div class="p-right">
-              <span class="badge ${bc}">${(d.margem_estimada||0).toFixed(1)}%</span>
-              <div class="p-margem-val">${brl(d.total_cliente)}</div>
-            </div>
-            <button class="btn-icon" onclick="deleteOrcamento('${doc.id}')" title="Excluir">🗑️</button>
-          </div>`;
-      });
-      el.innerHTML = html;
-    }, err => {
-      document.getElementById('orc-list').innerHTML = `<p style="color:#ef4444;padding:16px;">${err.message}</p>`;
+function orcInit(){
+  db.collection('orcamentos').orderBy('created_at','desc').limit(50).onSnapshot(snap=>{
+    const el=document.getElementById('orc-list');
+    if(snap.empty){el.innerHTML=`<div class="empty-state"><div class="empty-icon">📄</div><p>Nenhum orçamento encontrado. Clique em '+ Novo Orçamento' para começar.</p></div>`;return;}
+    _orcCache={};
+    let html='';
+    snap.forEach(doc=>{
+      const d=doc.data();_orcCache[doc.id]=d;
+      const bc=marginBadgeClass(d.margem_estimada||0);
+      html+=`<div class="pedido-card">
+        <div class="p-info">
+          <div class="p-title">${d.cliente?.nome||'—'}</div>
+          <div class="p-sub">${d.servico||'—'} · ${fmtDate(d.created_at)}</div>
+        </div>
+        <div class="p-right">
+          <span class="badge ${bc}">${(d.margem_estimada||0).toFixed(1)}%</span>
+          <div class="p-margem-val">${brl(d.total_cliente)}</div>
+        </div>
+        <div class="p-actions">
+          <button class="btn-icon" onclick="gerarPDF('${doc.id}')" title="Gerar PDF">🖨️</button>
+          <button class="btn-icon" onclick="enviarWhatsApp('${doc.id}')" title="Enviar WhatsApp" style="color:#25D366;">📱</button>
+          <button class="btn-icon" onclick="enviarEmail('${doc.id}')" title="Enviar Email" style="color:#1799d1;">✉️</button>
+          <button class="btn-icon" onclick="deleteOrcamento('${doc.id}')" title="Excluir">🗑️</button>
+        </div>
+      </div>`;
     });
+    el.innerHTML=html;
+  },err=>{document.getElementById('orc-list').innerHTML=`<p style="color:#ef4444;padding:16px;">${err.message}</p>`;});
 }
 
-// ─── DRE ────────────────────────────────────────────────
+// ─── PDF / SHARE ────────────────────────────────────────
+function buildOrcHTML(d) {
+  const now = new Date().toLocaleDateString('pt-BR');
+  const itensHTML = (d.itens||[]).map((it,i)=>`
+    <tr>
+      <td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;">${i+1}. ${it.descricao||'—'}</td>
+      <td style="padding:8px 12px;border-bottom:1px solid #f0f0f0;text-align:right;">${brl(it.valor)}</td>
+    </tr>`).join('');
+  const discountRow = d.desconto>0 ? `<tr><td style="padding:6px 12px;color:#ef4444;">Desconto (${d.desconto}%)</td><td style="padding:6px 12px;text-align:right;color:#ef4444;">- ${brl(d.subtotal*(d.desconto/100))}</td></tr>` : '';
+  return `
+    <div style="max-width:620px;margin:0 auto;font-family:Roboto,Arial,sans-serif;color:#4a4b4d;">
+      <div style="background:#1799d1;color:white;padding:28px 32px;border-radius:10px 10px 0 0;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div>
+            <h1 style="font-size:22px;font-weight:700;margin:0 0 4px;">ASD Financeiro</h1>
+            <p style="margin:0;opacity:.85;font-size:13px;">Alugue Seu Drone</p>
+          </div>
+          <div style="text-align:right;">
+            <p style="margin:0;font-size:13px;opacity:.85;">ORÇAMENTO</p>
+            <p style="margin:0;font-size:20px;font-weight:700;">#${Date.now().toString().slice(-6)}</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:white;padding:24px 32px;border:1px solid #e5e7eb;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:24px;gap:20px;flex-wrap:wrap;">
+          <div>
+            <p style="font-size:11px;color:#888;margin:0 0 4px;text-transform:uppercase;letter-spacing:.5px;">Para</p>
+            <p style="font-size:16px;font-weight:700;margin:0 0 2px;">${d.cliente?.nome||'—'}</p>
+            ${d.cliente?.email?`<p style="font-size:13px;color:#666;margin:0 0 2px;">${d.cliente.email}</p>`:''}
+            ${d.cliente?.telefone?`<p style="font-size:13px;color:#666;margin:0;">${d.cliente.telefone}</p>`:''}
+          </div>
+          <div style="text-align:right;">
+            <p style="font-size:11px;color:#888;margin:0 0 4px;text-transform:uppercase;letter-spacing:.5px;">Data</p>
+            <p style="font-size:14px;margin:0 0 6px;">${now}</p>
+            <p style="font-size:11px;color:#888;margin:0 0 2px;text-transform:uppercase;letter-spacing:.5px;">Serviço</p>
+            <p style="font-size:14px;font-weight:600;color:#1799d1;margin:0;">${d.servico||'—'}</p>
+          </div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+          <thead>
+            <tr style="background:#f5f5f5;">
+              <th style="padding:10px 12px;text-align:left;font-size:12px;color:#888;font-weight:600;">DESCRIÇÃO</th>
+              <th style="padding:10px 12px;text-align:right;font-size:12px;color:#888;font-weight:600;">VALOR</th>
+            </tr>
+          </thead>
+          <tbody>${itensHTML}</tbody>
+        </table>
+        <div style="display:flex;justify-content:flex-end;">
+          <table style="min-width:240px;">
+            <tr><td style="padding:6px 12px;color:#666;">Subtotal</td><td style="padding:6px 12px;text-align:right;">${brl(d.subtotal)}</td></tr>
+            ${discountRow}
+            <tr style="background:#eff8ff;">
+              <td style="padding:12px;font-weight:700;font-size:15px;border-radius:6px 0 0 6px;">TOTAL</td>
+              <td style="padding:12px;text-align:right;font-weight:700;font-size:18px;color:#1799d1;border-radius:0 6px 6px 0;">${brl(d.total_cliente)}</td>
+            </tr>
+          </table>
+        </div>
+        <p style="margin-top:24px;font-size:12px;color:#aaa;text-align:center;">Orçamento gerado pelo ASD Financeiro · alugueseudrone.com.br</p>
+      </div>
+    </div>`;
+}
+
+function gerarPDF(id) {
+  const d = _orcCache[id];
+  if (!d) { showToast('Dados não encontrados','error'); return; }
+  const area = document.getElementById('pdf-print-area');
+  area.innerHTML = buildOrcHTML(d);
+  area.style.display = 'block';
+  window.print();
+  setTimeout(() => { area.style.display = 'none'; area.innerHTML = ''; }, 1000);
+}
+
+function enviarWhatsApp(id) {
+  const d = _orcCache[id];
+  if (!d) { showToast('Dados não encontrados','error'); return; }
+  const tel = (d.cliente?.telefone||'').replace(/\D/g,'');
+  const msg = encodeURIComponent(
+    `Olá ${d.cliente?.nome||''}! 👋\n\n` +
+    `Segue o orçamento da Alugue Seu Drone:\n\n` +
+    `📋 *Serviço:* ${d.servico||'—'}\n` +
+    (d.itens||[]).map(it=>`• ${it.descricao}: ${brl(it.valor)}`).join('\n') + '\n\n' +
+    (d.desconto>0?`🏷️ Desconto (${d.desconto}%): - ${brl(d.subtotal*(d.desconto/100))}\n`:'') +
+    `💰 *Total: ${brl(d.total_cliente)}*\n\n` +
+    `Qualquer dúvida estamos à disposição! 🚁`
+  );
+  const url = tel ? `https://wa.me/55${tel}?text=${msg}` : `https://wa.me/?text=${msg}`;
+  window.open(url, '_blank');
+}
+
+function enviarEmail(id) {
+  const d = _orcCache[id];
+  if (!d) { showToast('Dados não encontrados','error'); return; }
+  const subject = encodeURIComponent(`Orçamento Alugue Seu Drone – ${d.servico||''}`);
+  const itensText = (d.itens||[]).map(it=>`• ${it.descricao}: ${brl(it.valor)}`).join('\n');
+  const body = encodeURIComponent(
+    `Olá ${d.cliente?.nome||''},\n\n` +
+    `Segue o orçamento conforme solicitado:\n\n` +
+    `Serviço: ${d.servico||'—'}\n\n` +
+    `Itens:\n${itensText}\n\n` +
+    (d.desconto>0?`Desconto (${d.desconto}%): - ${brl(d.subtotal*(d.desconto/100))}\n`:'') +
+    `TOTAL: ${brl(d.total_cliente)}\n\n` +
+    `Ficamos à disposição para qualquer dúvida.\n\nAlugue Seu Drone`
+  );
+  window.location.href = `mailto:${d.cliente?.email||''}?subject=${subject}&body=${body}`;
+}
+
+// ─── DRE ───────────────────────────────────────────────
 let dreYear, dreMonth;
-
 function dreInit() {
-  const now = new Date();
-  dreYear = now.getFullYear();
-  dreMonth = now.getMonth();
-  renderDRE();
+  const now=new Date(); dreYear=now.getFullYear(); dreMonth=now.getMonth(); renderDRE();
 }
-
 function dreChangeMonth(delta) {
-  dreMonth += delta;
-  if (dreMonth > 11) { dreMonth = 0; dreYear++; }
-  if (dreMonth < 0)  { dreMonth = 11; dreYear--; }
+  dreMonth+=delta;
+  if(dreMonth>11){dreMonth=0;dreYear++;}
+  if(dreMonth<0){dreMonth=11;dreYear--;}
   renderDRE();
 }
-
 async function renderDRE() {
-  const start = new Date(dreYear, dreMonth, 1);
-  const end   = new Date(dreYear, dreMonth+1, 0, 23, 59, 59);
-  const label = start.toLocaleDateString('pt-BR', {month:'long', year:'numeric'});
-  document.getElementById('dre-month-label').textContent =
-    label.charAt(0).toUpperCase() + label.slice(1);
-  document.getElementById('dre-content').innerHTML =
-    '<div class="spinner-wrap"><div class="spinner"></div></div>';
-  try {
-    const snap = await db.collection('transactions')
-      .where('date', '>=', firebase.firestore.Timestamp.fromDate(start))
-      .where('date', '<=', firebase.firestore.Timestamp.fromDate(end))
+  const start=new Date(dreYear,dreMonth,1),end=new Date(dreYear,dreMonth+1,0,23,59,59);
+  const lbl=start.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+  document.getElementById('dre-month-label').textContent=lbl.charAt(0).toUpperCase()+lbl.slice(1);
+  document.getElementById('dre-content').innerHTML='<div class="spinner-wrap"><div class="spinner"></div></div>';
+  try{
+    const snap=await db.collection('transactions')
+      .where('date','>=',firebase.firestore.Timestamp.fromDate(start))
+      .where('date','<=',firebase.firestore.Timestamp.fromDate(end))
       .get();
-    const acc = {
-      receita: 0,
-      Pilotos:0, Logística:0, Equipamentos:0, 'Taxas Pagamento':0,
-      Aluguel:0, Pessoal:0, Marketing:0, Administrativo:0, Impostos:0,
-      Outros_desp:0
-    };
-    snap.forEach(d => {
-      const t = d.data();
-      if (t.type === 'receita') { acc.receita += t.amount || 0; return; }
-      const cat = t.category;
-      if (acc[cat] !== undefined) acc[cat] += t.amount || 0;
-      else acc.Outros_desp += t.amount || 0;
+    const a={receita:0,Pilotos:0,'Logística':0,Equipamentos:0,'Taxas Pagamento':0,Aluguel:0,Pessoal:0,Marketing:0,Administrativo:0,Impostos:0};
+    snap.forEach(d=>{
+      const t=d.data();
+      if(t.type==='receita'){a.receita+=t.amount||0;return;}
+      if(a[t.category]!==undefined)a[t.category]+=t.amount||0;
     });
-    const custsVar = acc.Pilotos + acc.Logística + acc.Equipamentos + acc['Taxas Pagamento'];
-    const margContr = acc.receita - custsVar;
-    const despFixed = acc.Aluguel + acc.Pessoal + acc.Marketing + acc.Administrativo + acc.Impostos;
-    const lucro = margContr - despFixed;
-    const lucroClass = lucro >= 0 ? 'green-bg' : 'red-bg';
+    const cv=a.Pilotos+a['Logística']+a.Equipamentos+a['Taxas Pagamento'];
+    const mc=a.receita-cv;
+    const df=a.Aluguel+a.Pessoal+a.Marketing+a.Administrativo+a.Impostos;
+    const lucro=mc-df;
+    const dr=(l,v,ind=false,cls='')=>`<div class="dre-row ${ind?'indent':''} ${cls}"><span class="dre-label">${l}</span><span class="dre-val">${brl(v)}</span></div>`;
+    document.getElementById('dre-content').innerHTML=`
+      ${dr('RECEITA BRUTA',a.receita)}
+      ${dr('(-) CUSTOS VARIÁVEIS',cv)}
+      ${dr('├─ Pilotos',a.Pilotos,true)}
+      ${dr('├─ Logística',a['Logística'],true)}
+      ${dr('├─ Equipamentos',a.Equipamentos,true)}
+      ${dr('└─ Taxas Pagamento',a['Taxas Pagamento'],true)}
+      <div class="dre-row subtotal blue-bg"><span class="dre-label">= MARGEM DE CONTRIBUIÇÃO</span><span class="dre-val">${brl(mc)}</span></div>
+      ${dr('(-) DESPESAS FIXAS',df)}
+      ${dr('├─ Aluguel',a.Aluguel,true)}
+      ${dr('├─ Pessoal',a.Pessoal,true)}
+      ${dr('├─ Marketing',a.Marketing,true)}
+      ${dr('├─ Administrativo',a.Administrativo,true)}
+      ${dr('└─ Impostos',a.Impostos,true)}
+      <div class="dre-row subtotal ${lucro>=0?'green-bg':'red-bg'}"><span class="dre-label">= LUCRO OPERACIONAL</span><span class="dre-val">${brl(lucro)}</span></div>`;
+  }catch(e){document.getElementById('dre-content').innerHTML=`<p style="color:#ef4444;">${e.message}</p>`;}
+}
 
-    const dreRow = (label, val, indent=false, cls='') =>
-      `<div class="dre-row ${indent ? 'indent' : ''} ${cls}">
-        <span class="dre-label">${label}</span>
-        <span class="dre-val">${brl(val)}</span>
-       </div>`;
+// ─── IMPORTAÇÃO XLS ─────────────────────────────────────
+// Mapeamento: nome da linha no Excel → {type, category}
+const XLS_MAP = {
+  'RECEITAS - VENDAS':        {type:'receita',   cat:'Serviços'},
+  'Frete/Coworking':          {type:'despesa',   cat:'Logística'},
+  'Taxa PagSeguro/PayPal':    {type:'despesa',   cat:'Taxas Pagamento'},
+  'ASDMktplace Piloto':       {type:'despesa',   cat:'Pilotos'},
+  'Mavic 2 Enterprise Dual':  {type:'despesa',   cat:'Equipamentos'},
+  'Clicksign':                {type:'despesa',   cat:'Administrativo'},
+  'Prefeitura de SP':         {type:'despesa',   cat:'Impostos'},
+  'SIMPLES NACIONAL':         {type:'despesa',   cat:'Impostos'},
+  'Hospedagem Site':          {type:'despesa',   cat:'Administrativo'},
+  'Manutenção Drones':        {type:'despesa',   cat:'Equipamentos'},
+  'Microsoft Office':         {type:'despesa',   cat:'Administrativo'},
+  'Contabilizei':             {type:'despesa',   cat:'Administrativo'},
+  'Certificado Digital':      {type:'despesa',   cat:'Administrativo'},
+  'PRONAMPE':                 {type:'despesa',   cat:'Administrativo'},
+  'ChatGPT':                  {type:'despesa',   cat:'Administrativo'},
+  'Trello':                   {type:'despesa',   cat:'Administrativo'},
+  'Google One ':              {type:'despesa',   cat:'Administrativo'},
+  'Google One':               {type:'despesa',   cat:'Administrativo'},
+  'Mailchimp':                {type:'despesa',   cat:'Marketing'},
+  'Canva':                    {type:'despesa',   cat:'Marketing'},
+  'Mlabs':                    {type:'despesa',   cat:'Marketing'},
+  'Meta Ads':                 {type:'despesa',   cat:'Marketing'},
+  'Google Ads':               {type:'despesa',   cat:'Marketing'},
+  'Outros':                   {type:'despesa',   cat:'Administrativo'},
+};
+// Linhas prefixadas
+function mapRowName(name) {
+  if (!name || typeof name !== 'string') return null;
+  const n = name.trim();
+  if (XLS_MAP[n]) return {...XLS_MAP[n], label: n};
+  if (n.startsWith('Depreciação')) return {type:'despesa', cat:'Equipamentos', label: n};
+  if (n.startsWith('Seguro'))      return {type:'despesa', cat:'Equipamentos', label: n};
+  return null;
+}
 
-    document.getElementById('dre-content').innerHTML = `
-      ${dreRow('RECEITA BRUTA', acc.receita)}
-      ${dreRow('(-) CUSTOS VARIÁVEIS', custsVar)}
-      ${dreRow('├─ Pilotos', acc.Pilotos, true)}
-      ${dreRow('├─ Logística', acc.Logística, true)}
-      ${dreRow('├─ Equipamentos', acc.Equipamentos, true)}
-      ${dreRow('└─ Taxas Pagamento', acc['Taxas Pagamento'], true)}
-      <div class="dre-row subtotal blue-bg">
-        <span class="dre-label">= MARGEM DE CONTRIBUIÇÃO</span>
-        <span class="dre-val">${brl(margContr)}</span>
-      </div>
-      ${dreRow('(-) DESPESAS FIXAS', despFixed)}
-      ${dreRow('├─ Aluguel', acc.Aluguel, true)}
-      ${dreRow('├─ Pessoal', acc.Pessoal, true)}
-      ${dreRow('├─ Marketing', acc.Marketing, true)}
-      ${dreRow('├─ Administrativo', acc.Administrativo, true)}
-      ${dreRow('└─ Impostos', acc.Impostos, true)}
-      <div class="dre-row subtotal ${lucroClass}">
-        <span class="dre-label">= LUCRO OPERACIONAL</span>
-        <span class="dre-val">${brl(lucro)}</span>
-      </div>
-    `;
+const MONTHS_COL = {0:'Jan',1:'Fev',2:'Mar',3:'Abr',4:'Mai',5:'Jun',6:'Jul',7:'Ago',8:'Set',9:'Out',10:'Nov',11:'Dez'};
+let _importParsed = {}; // {year: [{date, type, category, amount, description}]}
+let _importYearsSelected = new Set();
+
+function openImportModal() {
+  document.getElementById('import-modal').classList.add('open');
+  document.getElementById('import-step-select').style.display='block';
+  document.getElementById('import-step-preview').style.display='none';
+  document.getElementById('import-confirm-btn').style.display='none';
+  _importParsed={};_importYearsSelected=new Set();
+}
+function closeImportModal() {
+  document.getElementById('import-modal').classList.remove('open');
+}
+
+function handleXLSFile(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb = XLSX.read(e.target.result, {type:'array', cellDates:true});
+      const years = ['2024','2025','2026'];
+      _importParsed = {};
+      years.forEach(yr => {
+        if (!wb.SheetNames.includes(yr)) return;
+        const ws = wb.Sheets[yr];
+        const rows = XLSX.utils.sheet_to_json(ws, {header:1, raw:false, defval:null});
+        // Find header row (has 'Janeiro')
+        let headerRow = -1;
+        for (let i=0;i<rows.length;i++) {
+          if (rows[i] && rows[i].includes('Janeiro')) { headerRow=i; break; }
+        }
+        if (headerRow < 0) return;
+        // Month columns: Janeiro=col2, Fevereiro=col3 ... Dezembro=col13
+        const monthCols = [2,3,4,5,6,7,8,9,10,11,12,13];
+        const transactions = [];
+        const yearInt = parseInt(yr);
+        for (let ri = headerRow+1; ri < rows.length; ri++) {
+          const row = rows[ri];
+          if (!row) continue;
+          const rowName = row[1];
+          const mapping = mapRowName(rowName);
+          if (!mapping) continue;
+          monthCols.forEach((col, mi) => {
+            const raw = row[col];
+            if (raw === null || raw === undefined || raw === '' || raw === 'undefined') return;
+            const num = parseFloat(String(raw).replace(',','.'));
+            if (isNaN(num) || num === 0) return;
+            const amount = Math.abs(num);
+            transactions.push({
+              date: new Date(yearInt, mi, 1, 12, 0, 0),
+              type: mapping.type,
+              category: mapping.cat,
+              amount: amount,
+              description: mapping.label,
+              source: 'xlsx_import'
+            });
+          });
+        }
+        if (transactions.length > 0) _importParsed[yr] = transactions;
+      });
+      showImportPreview();
+    } catch(err) {
+      showToast('Erro ao ler arquivo: ' + err.message, 'error');
+    }
+    input.value='';
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function showImportPreview() {
+  document.getElementById('import-step-select').style.display='none';
+  document.getElementById('import-step-preview').style.display='block';
+  const avail = Object.keys(_importParsed);
+  if (avail.length === 0) { showToast('Nenhum dado encontrado no arquivo','error'); closeImportModal(); return; }
+  _importYearsSelected = new Set(avail);
+  // Year toggle buttons
+  const ytDiv = document.getElementById('import-year-select');
+  ytDiv.innerHTML = avail.map(yr=>`
+    <button class="btn-sel selected" id="yrbtn-${yr}" onclick="toggleImportYear('${yr}',this);event.stopPropagation()">${yr} (${_importParsed[yr].length} lançamentos)</button>
+  `).join('');
+  renderImportPreview();
+  document.getElementById('import-confirm-btn').style.display='inline-flex';
+}
+
+function toggleImportYear(yr, btn) {
+  if (_importYearsSelected.has(yr)) _importYearsSelected.delete(yr);
+  else _importYearsSelected.add(yr);
+  btn.classList.toggle('selected', _importYearsSelected.has(yr));
+  renderImportPreview();
+}
+
+function renderImportPreview() {
+  let total=0, byYear={};
+  _importYearsSelected.forEach(yr => {
+    const items = _importParsed[yr]||[];
+    total+=items.length;
+    const rec = items.filter(t=>t.type==='receita').reduce((s,t)=>s+t.amount,0);
+    const desp = items.filter(t=>t.type==='despesa').reduce((s,t)=>s+t.amount,0);
+    byYear[yr] = {count:items.length, rec, desp};
+  });
+  const el = document.getElementById('import-preview-content');
+  if (total === 0) { el.innerHTML='<p style="color:#888;font-size:13px;text-align:center;padding:16px;">Nenhum ano selecionado.</p>'; return; }
+  let html = `<div style="background:#f5f5f5;border-radius:8px;padding:14px;margin-bottom:10px;">
+    <p style="font-size:13px;font-weight:600;margin-bottom:10px;">📊 Resumo da importação</p>`;
+  Object.entries(byYear).forEach(([yr,info])=>{
+    html+=`<div class="import-summary-row"><span><b>${yr}</b> — ${info.count} lançamentos</span><span style="font-size:12px;color:#666;">Rec: ${brl(info.rec)} | Desp: ${brl(info.desp)}</span></div>`;
+  });
+  html+=`<div class="import-summary-row" style="font-weight:700;padding-top:8px;"><span>Total</span><span>${total} transações</span></div>`;
+  html+='</div><p style="font-size:12px;color:#f59e0b;"><b>⚠️ Atenção:</b> transações já importadas com a mesma data/descrição serão duplicadas. Recomenda-se importar apenas uma vez por ano.</p>';
+  el.innerHTML=html;
+}
+
+async function confirmImport() {
+  if (_importYearsSelected.size === 0) { showToast('Selecione ao menos um ano','error'); return; }
+  const allTx = [];
+  _importYearsSelected.forEach(yr => { ((_importParsed[yr])||[]).forEach(t=>allTx.push(t)); });
+  if (allTx.length === 0) { showToast('Nenhum dado para importar','error'); return; }
+  document.getElementById('import-confirm-btn').style.display='none';
+  document.getElementById('import-progress-bar').style.display='block';
+  document.getElementById('import-status').textContent='Importando...';
+  let done=0;
+  const BATCH_SIZE=400;
+  try {
+    for (let i=0;i<allTx.length;i+=BATCH_SIZE) {
+      const batch = db.batch();
+      const chunk = allTx.slice(i, i+BATCH_SIZE);
+      chunk.forEach(t => {
+        const ref = db.collection('transactions').doc();
+        batch.set(ref, {
+          date: firebase.firestore.Timestamp.fromDate(t.date),
+          type: t.type, category: t.category, amount: t.amount,
+          description: t.description, source: 'xlsx_import',
+          created_at: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      });
+      await batch.commit();
+      done+=chunk.length;
+      const pct=Math.round((done/allTx.length)*100);
+      document.getElementById('import-progress-fill').style.width=pct+'%';
+      document.getElementById('import-status').textContent=`Importados ${done} de ${allTx.length}...`;
+    }
+    showToast(`✅ ${allTx.length} transações importadas com sucesso!`,'success');
+    closeImportModal();
   } catch(e) {
-    document.getElementById('dre-content').innerHTML =
-      `<p style="color:#ef4444;">${e.message}</p>`;
+    showToast('Erro na importação: '+e.message,'error');
+    document.getElementById('import-confirm-btn').style.display='inline-flex';
   }
 }
 
-// ─── BOOT ────────────────────────────────────────────────
-dashInit();
-trInit();
-pedInit();
-orcInit();
-dreInit();
+// ─── BOOT ──────────────────────────────────────────────
+dashInit(); trInit(); pedInit(); orcInit(); dreInit();
 </script>
 </body>
 </html>
