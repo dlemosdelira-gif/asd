@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<!--
+  ASD Financeiro - Sistema de Gestão Financeira
+  Alugue Seu Drone
+
+  COMO ADICIONAR LOGO:
+  Substitua o elemento <div class="logo-placeholder">ASD</div>
+  por: <img src="sua-logo.png" alt="ASD" style="height:40px;">
+  Ou use uma URL: <img src="https://seusite.com/logo.png" alt="ASD" style="height:40px;">
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASD Financeiro</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #f5f5f5;
+  color: #4a4b4d;
+  min-height: 100vh;
+}
+
+/* ─── HEADER ─────────────────────────────────────────── */
+header {
+  background: #1799d1;
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-placeholder {
+  width: 44px; height: 44px;
+  background: white;
+  color: #1799d1;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px;
+  flex-shrink: 0;
+}
+
+.header-text h1 { font-size: 18px; font-weight: 700; }
+.header-text p  { font-size: 11px; opacity: .85; }
+
+/* ─── NAV TABS ───────────────────────────────────────── */
+nav {
+  background: white;
+  display: flex;
+  overflow-x: auto;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 72px;
+  z-index: 99;
+}
+
+nav button {
+  flex: none;
+  background: none;
+  border: none;
+  padding: 14px 18px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #4a4b4d;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: color .2s, border-color .2s;
+}
+nav button:hover { color: #1799d1; }
+nav button.active {
+  color: #1799d1;
+  border-bottom-color: #1799d1;
+  font-weight: 500;
+}
+
+/* ─── MAIN ───────────────────────────────────────────── */
+main { max-width: 900px; margin: 0 auto; padding: 20px 16px 40px; }
+
+section.page { display: none; }
+section.page.active { display: block; }
+
+/* ─── CARDS ──────────────────────────────────────────── */
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-header h2 { font-size: 17px; font-weight: 700; }
+
+/* ─── DASHBOARD METRICS ──────────────────────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 18px 16px;
+  text-align: center;
+}
+
+.metric-card .metric-icon { font-size: 28px; margin-bottom: 6px; }
+.metric-card .metric-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+.metric-card .metric-value {
+  font-size: 20px; font-weight: 700;
+}
+.metric-card .metric-value.green { color: #22c55e; }
+.metric-card .metric-value.red   { color: #ef4444; }
+.metric-card .metric-value.blue  { color: #1799d1; }
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 18px;
+  border: none; border-radius: 7px;
+  font-family: inherit; font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: opacity .15s, transform .1s;
+}
+.btn:hover { opacity: .88; }
+.btn:active { transform: scale(.97); }
+.btn-primary  { background: #1799d1; color: white; }
+.btn-success  { background: #22c55e; color: white; }
+.btn-danger   { background: #ef4444; color: white; }
+.btn-gray     { background: #e5e7eb; color: #4a4b4d; }
+.btn-sm       { padding: 6px 12px; font-size: 12px; }
+.btn-icon     { background: none; border: none; cursor: pointer; font-size: 16px; padding: 4px 8px; border-radius: 5px; }
+.btn-icon:hover { background: #f3f4f6; }
+
+/* ─── VISUAL SELECT BUTTONS ──────────────────────────── */
+.btn-group {
+  display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 14px;
+}
+
+.btn-sel {
+  padding: 9px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  color: #4a4b4d;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.btn-sel:hover { border-color: #1799d1; color: #1799d1; }
+.btn-sel.selected {
+  background: #1799d1;
+  border-color: #1799d1;
+  color: white;
+}
+
+/* ─── FORMS ──────────────────────────────────────────── */
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 12px; font-weight: 500; color: #555; margin-bottom: 5px; }
+
+.form-control {
+  width: 100%; padding: 10px 12px;
+  border: 1.5px solid #e5e7eb; border-radius: 7px;
+  font-family: inherit; font-size: 14px; color: #4a4b4d;
+  transition: border-color .15s;
+  background: white;
+}
+.form-control:focus { outline: none; border-color: #1799d1; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.form-actions {
+  display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap;
+}
+
+/* ─── INLINE FORM AREA ───────────────────────────────── */
+.form-area {
+  display: none;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.form-area.open { display: block; }
+
+/* ─── LIST ITEMS ─────────────────────────────────────── */
+.list-container { background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+.list-container .list-header { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; font-size: 13px; font-weight: 600; color: #888; }
+
+.list-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f9f9f9;
+  transition: background .1s;
+}
+.list-item:last-child { border-bottom: none; }
+.list-item:hover { background: #fafafa; }
+
+.list-item .item-icon { font-size: 20px; flex-shrink: 0; }
+.list-item .item-main { flex: 1; min-width: 0; }
+.list-item .item-title { font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list-item .item-subtitle { font-size: 11px; color: #888; margin-top: 2px; }
+.list-item .item-amount { font-size: 15px; font-weight: 700; flex-shrink: 0; }
+.item-amount.green { color: #22c55e; }
+.item-amount.red   { color: #ef4444; }
+
+/* ─── EMPTY STATE ────────────────────────────────────── */
+.empty-state {
+  text-align: center; padding: 40px 20px; color: #aaa;
+}
+.empty-state .empty-icon { font-size: 40px; margin-bottom: 10px; }
+.empty-state p { font-size: 13px; }
+
+/* ─── SPINNER ────────────────────────────────────────── */
+.spinner-wrap { display: flex; justify-content: center; padding: 30px; }
+.spinner {
+  width: 30px; height: 30px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #1799d1;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── BADGE ──────────────────────────────────────────── */
+.badge {
+  display: inline-block; padding: 3px 9px; border-radius: 20px;
+  font-size: 11px; font-weight: 700;
+}
+.badge-green  { background: #dcfce7; color: #16a34a; }
+.badge-yellow { background: #fef9c3; color: #b45309; }
+.badge-red    { background: #fee2e2; color: #dc2626; }
+
+/* ─── CALC CARD ──────────────────────────────────────── */
+.calc-card {
+  border-radius: 8px; padding: 14px 16px; margin-top: 14px;
+  border: 1.5px solid #e5e7eb;
+}
+.calc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0; font-size: 13px;
+}
+.calc-row.total { font-weight: 700; font-size: 15px; border-top: 1.5px solid #e5e7eb; margin-top: 6px; padding-top: 8px; }
+.calc-row .label { color: #666; }
+.calc-row .val   { font-weight: 500; }
+
+/* ─── PEDIDO CARD ────────────────────────────────────── */
+.pedido-card {
+  background: white; border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 12px;
+}
+.pedido-card .p-info { flex: 1; }
+.pedido-card .p-title { font-size: 14px; font-weight: 600; }
+.pedido-card .p-sub   { font-size: 11px; color: #888; margin-top: 2px; }
+.pedido-card .p-right { text-align: right; flex-shrink: 0; }
+.pedido-card .p-margem-val { font-size: 13px; font-weight: 600; margin-top: 3px; color: #4a4b4d; }
+
+/* ─── WIZARD ─────────────────────────────────────────── */
+.steps-indicator {
+  display: flex; align-items: center; gap: 4px;
+  margin-bottom: 22px; overflow-x: auto; padding-bottom: 4px;
+}
+.step-dot {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  flex-shrink: 0;
+}
+.step-dot .dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  border: 2px solid #e5e7eb; background: white; color: #aaa;
+  transition: all .2s;
+}
+.step-dot.active .dot  { border-color: #1799d1; background: #1799d1; color: white; }
+.step-dot.done .dot    { border-color: #22c55e; background: #22c55e; color: white; }
+.step-dot .step-label  { font-size: 10px; color: #aaa; white-space: nowrap; }
+.step-dot.active .step-label { color: #1799d1; font-weight: 500; }
+.step-dot.done .step-label   { color: #22c55e; }
+.step-line { flex: 1; height: 2px; background: #e5e7eb; min-width: 20px; }
+.step-line.done { background: #22c55e; }
+
+.wizard-step { display: none; }
+.wizard-step.active { display: block; }
+
+/* ─── ORÇAMENTO ITENS ────────────────────────────────── */
+.orcamento-item-row {
+  display: flex; gap: 8px; align-items: center; margin-bottom: 8px;
+}
+.orcamento-item-row .form-control { flex: 1; }
+.orcamento-item-row .val-input    { width: 120px; flex: none; }
+
+/* ─── DRE ────────────────────────────────────────────── */
+.dre-section { margin-bottom: 12px; }
+.dre-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5;
+}
+.dre-row.indent { padding-left: 20px; }
+.dre-row.indent .dre-label { color: #666; }
+.dre-row.subtotal {
+  font-weight: 700; font-size: 15px;
+  padding: 10px 14px; border-radius: 8px; margin: 8px 0;
+  border-bottom: none;
+}
+.dre-row.subtotal.blue-bg { background: #eff8ff; color: #1799d1; }
+.dre-row.subtotal.green-bg { background: #f0fdf4; color: #16a34a; }
+.dre-row.subtotal.red-bg   { background: #fef2f2; color: #dc2626; }
+.dre-label { flex: 1; }
+.dre-val   { font-weight: 500; }
+
+.month-nav {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+  background: white; border-radius: 10px; padding: 12px 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.month-nav span { flex: 1; text-align: center; font-weight: 600; font-size: 15px; }
+
+/* ─── TOAST ──────────────────────────────────────────── */
+#toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: #4a4b4d; color: white;
+  padding: 10px 20px; border-radius: 8px;
+  font-size: 13px; z-index: 1000;
+  opacity: 0; transition: opacity .3s;
+  pointer-events: none; max-width: 90vw; text-align: center;
+}
+#toast.show { opacity: 1; }
+#toast.error { background: #ef4444; }
+#toast.success { background: #22c55e; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-row { grid-template-columns: 1fr; }
+  .metric-card .metric-value { font-size: 16px; }
+  nav button { padding: 12px 12px; font-size: 12px; }
+  .btn-sel { font-size: 12px; padding: 8px 11px; }
+}
+
+@media (max-width: 400px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <!-- Substituir pela logo real: <img src="logo.png" alt="ASD" style="height:40px;"> -->
+  <div class="logo-placeholder">ASD</div>
+  <div class="header-text">
+    <h1>ASD Financeiro</h1>
+    <p>Sistema de Gestão</p>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <button class="active" onclick="showPage('dashboard')">📊 Dashboard</button>
+  <button onclick="showPage('transacoes')">💰 Transações</button>
+  <button onclick="showPage('pedidos')">📦 Pedidos</button>
+  <button onclick="showPage('orcamentos')">📄 Orçamentos</button>
+  <button onclick="showPage('dre')">📈 DRE</button>
+</nav>
+
+<main>
+
+  <!-- ═══ DASHBOARD ═══════════════════════════════════════ -->
+  <section id="page-dashboard" class="page active">
+    <div class="metrics-grid" id="dash-metrics">
+      <div class="spinner-wrap" style="grid-column:span 2"><div class="spinner"></div></div>
+    </div>
+    <div class="card">
+      <div class="section-header"><h2>Resumo do Mês</h2><span id="dash-month" style="font-size:13px;color:#888;"></span></div>
+      <div id="dash-summary">
+        <div class="spinner-wrap"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TRANSAÇÕES ══════════════════════════════════════ -->
+  <section id="page-transacoes" class="page">
+    <div class="section-header">
+      <h2>💰 Transações</h2>
+      <button class="btn btn-primary" onclick="toggleTrForm()">+ Nova Transação</button>
+    </div>
+
+    <div class="form-area" id="tr-form-area">
+      <h3 style="margin-bottom:14px;font-size:15px;">Nova Transação</h3>
+
+      <div class="form-group">
+        <label>Tipo *</label>
+        <div class="btn-group" id="tr-tipo-group">
+          <button class="btn-sel" onclick="selectTrTipo('receita',this);event.stopPropagation()">💰 Receita</button>
+          <button class="btn-sel" onclick="selectTrTipo('despesa',this);event.stopPropagation()">💸 Despesa</button>
+        </div>
+      </div>
+
+      <div class="form-group" id="tr-cat-group" style="display:none">
+        <label>Categoria *</label>
+        <div class="btn-group" id="tr-cat-buttons"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Valor (R$) *</label>
+          <input type="number" class="form-control" id="tr-valor" placeholder="0,00" min="0" step="0.01">
+        </div>
+        <div class="form-group">
+          <label>Data *</label>
+          <input type="date" class="form-control" id="tr-data">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Descrição *</label>
+        <input type="text" class="form-control" id="tr-desc" placeholder="Descreva a transação...">
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="saveTr()">💾 Salvar</button>
+        <button class="btn btn-gray" onclick="toggleTrForm(false)">Cancelar</button>
+      </div>
+    </div>
+
+    <div class="list-container" id="tr-list">
+      <div class="spinner-wrap"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- ═══ PEDIDOS ═════════════════════════════════════════ -->
+  <section id="page-pedidos" class="page">
+    <div class="section-header">
+      <h2>📦 Pedidos</h2>
+      <button class="btn btn-primary" onclick="togglePedForm()">+ Novo Pedido</button>
+    </div>
+
+    <div class="form-area" id="ped-form-area">
+      <h3 style="margin-bottom:14px;font-size:15px;">Novo Pedido</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Cliente *</label>
+          <input type="text" class="form-control" id="ped-cliente" placeholder="Nome do cliente">
+        </div>
+        <div class="form-group">
+          <label>Data *</label>
+          <input type="date" class="form-control" id="ped-data">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tipo de Serviço *</label>
+        <div class="btn-group" id="ped-servico-group">
+          <button class="btn-sel" onclick="selectPedServico('Imagens Aéreas',this);event.stopPropagation()">📸 Imagens Aéreas</button>
+          <button class="btn-sel" onclick="selectPedServico('Inspeção',this);event.stopPropagation()">🔍 Inspeção</button>
+          <button class="btn-sel" onclick="selectPedServico('Mapeamento',this);event.stopPropagation()">🗺️ Mapeamento</button>
+          <button class="btn-sel" onclick="selectPedServico('Eventos',this);event.stopPropagation()">🎉 Eventos</button>
+          <button class="btn-sel" onclick="selectPedServico('Locação s/ Op',this);event.stopPropagation()">🚁 Locação s/ Op</button>
+          <button class="btn-sel" onclick="selectPedServico('Locação c/ Op',this);event.stopPropagation()">👨‍✈️ Locação c/ Op</button>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Receita (R$) *</label>
+          <input type="number" class="form-control" id="ped-receita" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+        </div>
+        <div class="form-group">
+          <label>Custo Piloto (R$)</label>
+          <input type="number" class="form-control" id="ped-piloto" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Imposto s/ Piloto</label>
+        <div class="btn-group" id="ped-imposto-group">
+          <button class="btn-sel selected" id="imp-0" onclick="selectImposto(0,this);event.stopPropagation()">0%</button>
+          <button class="btn-sel" id="imp-6"  onclick="selectImposto(6,this);event.stopPropagation()">6%</button>
+          <button class="btn-sel" id="imp-15" onclick="selectImposto(15,this);event.stopPropagation()">15%</button>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Custo Logística (R$)</label>
+          <input type="number" class="form-control" id="ped-logistica" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+        </div>
+        <div class="form-group">
+          <label>Taxa Mercado Pago/PayPal (R$)</label>
+          <input type="number" class="form-control" id="ped-taxa" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Custo Equipamento (R$)</label>
+        <input type="number" class="form-control" id="ped-equip" placeholder="0,00" min="0" step="0.01" oninput="calcPedido()">
+      </div>
+
+      <div class="calc-card" id="ped-calc-card">
+        <div class="calc-row"><span class="label">Imposto s/ Piloto</span><span class="val" id="cc-imposto">R$ 0,00</span></div>
+        <div class="calc-row"><span class="label">Custo Total</span><span class="val" id="cc-custo">R$ 0,00</span></div>
+        <div class="calc-row total">
+          <span class="label">Margem</span>
+          <span id="cc-margem-pct" class="badge badge-green">0%</span>
+          <span class="val" id="cc-margem-val" style="margin-left:8px;">R$ 0,00</span>
+        </div>
+      </div>
+
+      <div class="form-actions" style="margin-top:16px;">
+        <button class="btn btn-primary" onclick="savePedido()">💾 Salvar Pedido</button>
+        <button class="btn btn-gray" onclick="togglePedForm(false)">Cancelar</button>
+      </div>
+    </div>
+
+    <div id="ped-list">
+      <div class="spinner-wrap"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- ═══ ORÇAMENTOS ══════════════════════════════════════ -->
+  <section id="page-orcamentos" class="page">
+    <div class="section-header">
+      <h2>📄 Orçamentos</h2>
+      <button class="btn btn-primary" onclick="toggleOrcForm()">+ Novo Orçamento</button>
+    </div>
+
+    <div class="form-area" id="orc-form-area">
+      <!-- Step Indicator -->
+      <div class="steps-indicator" id="steps-indicator">
+        <div class="step-dot active" id="sdot-1"><div class="dot">1</div><span class="step-label">Cliente</span></div>
+        <div class="step-line" id="sline-1"></div>
+        <div class="step-dot" id="sdot-2"><div class="dot">2</div><span class="step-label">Serviço</span></div>
+        <div class="step-line" id="sline-2"></div>
+        <div class="step-dot" id="sdot-3"><div class="dot">3</div><span class="step-label">Itens</span></div>
+        <div class="step-line" id="sline-3"></div>
+        <div class="step-dot" id="sdot-4"><div class="dot">4</div><span class="step-label">Custos</span></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="wizard-step active" id="wstep-1">
+        <h4 style="margin-bottom:14px;color:#1799d1;">👤 Dados do Cliente</h4>
+        <div class="form-group">
+          <label>Nome *</label>
+          <input type="text" class="form-control" id="orc-nome" placeholder="Nome do cliente">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" id="orc-email" placeholder="email@exemplo.com">
+          </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="text" class="form-control" id="orc-tel" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="orcNext(2)">Próximo →</button>
+          <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="wizard-step" id="wstep-2">
+        <h4 style="margin-bottom:14px;color:#1799d1;">🚁 Tipo de Serviço</h4>
+        <div class="btn-group" id="orc-servico-group">
+          <button class="btn-sel" onclick="selectOrcServico('Imagens Aéreas',this);event.stopPropagation()">📸 Imagens Aéreas</button>
+          <button class="btn-sel" onclick="selectOrcServico('Inspeção',this);event.stopPropagation()">🔍 Inspeção</button>
+          <button class="btn-sel" onclick="selectOrcServico('Mapeamento',this);event.stopPropagation()">🗺️ Mapeamento</button>
+          <button class="btn-sel" onclick="selectOrcServico('Eventos',this);event.stopPropagation()">🎉 Eventos</button>
+          <button class="btn-sel" onclick="selectOrcServico('Locação s/ Op',this);event.stopPropagation()">🚁 Locação s/ Op</button>
+          <button class="btn-sel" onclick="selectOrcServico('Locação c/ Op',this);event.stopPropagation()">👨‍✈️ Locação c/ Op</button>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gray" onclick="orcNext(1)">← Voltar</button>
+          <button class="btn btn-primary" onclick="orcNext(3)">Próximo →</button>
+          <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="wizard-step" id="wstep-3">
+        <h4 style="margin-bottom:14px;color:#1799d1;">📋 Itens do Orçamento</h4>
+        <div id="orc-itens-list"></div>
+        <button class="btn btn-gray btn-sm" onclick="addOrcItem()" style="margin-bottom:16px;">+ Adicionar Item</button>
+
+        <div class="form-group">
+          <label>Desconto (%)</label>
+          <input type="number" class="form-control" id="orc-desconto" placeholder="0" min="0" max="100" step="0.1" oninput="calcOrcamento()" style="max-width:160px;">
+        </div>
+
+        <div class="calc-card">
+          <div class="calc-row"><span class="label">Subtotal</span><span class="val" id="orc-subtotal">R$ 0,00</span></div>
+          <div class="calc-row" id="orc-desc-row" style="display:none"><span class="label">Desconto</span><span class="val" id="orc-desc-val" style="color:#ef4444;">- R$ 0,00</span></div>
+          <div class="calc-row total"><span class="label">TOTAL CLIENTE</span><span class="val" id="orc-total" style="color:#1799d1;font-size:18px;">R$ 0,00</span></div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-gray" onclick="orcNext(2)">← Voltar</button>
+          <button class="btn btn-primary" onclick="orcNext(4)">Próximo →</button>
+          <button class="btn btn-gray" onclick="toggleOrcForm(false)">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="wizard-step" id="wstep-4">
+        <h4 style="margin-bottom:14px;color:#1799d1;">💰 Custos Internos</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Custo Piloto (R$)</label>
+            <input type="number" class="form-control" id="orc-piloto" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()">
+          </div>
+          <div class="form-group">
+            <label>Custo Logística (R$)</label>
+            <input type="number" class="form-control" id="orc-logistica" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Custo Equipamento (R$)</label>
+          <input type="number" class="form-control" id="orc-equip" placeholder="0,00" min="0" step="0.01" oninput="calcOrcCustos()">
+        </div>
+
+        <div class="calc-card">
+          <div class="calc-row"><span class="label">Total Cliente</span><span class="val" id="orc4-total">R$ 0,00</span></div>
+          <div class="calc-row"><span class="label">Custo Total</span><span class="val" id="orc4-custo">R$ 0,00</span></div>
+          <div class="calc-row total">
+            <span class="label">Margem Estimada</span>
+            <span id="orc4-margem-pct" class="badge badge-green">0%</span>
+            <span class="val" id="orc4-margem-val" style="margin-left:8px;">R$ 0,00</span>
+          </div>
+        </div>
+
+        <div class="form-actions" style="margin-top:16px;">
+          <button class="btn btn-gray" onclick="orcNext(3)">← Voltar</button>
+          <button class="btn btn-success" onclick="saveOrcamento()">💾 Gerar Orçamento</button>
+          <button class="btn btn-gray" onclick="toggleOrcForm(false)">✖ Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="orc-list">
+      <div class="spinner-wrap"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+  <!-- ═══ DRE ══════════════════════════════════════════════ -->
+  <section id="page-dre" class="page">
+    <div class="month-nav">
+      <button class="btn btn-gray btn-sm" onclick="dreChangeMonth(-1)">← Anterior</button>
+      <span id="dre-month-label">—</span>
+      <button class="btn btn-gray btn-sm" onclick="dreChangeMonth(1)">Próximo →</button>
+    </div>
+    <div class="card" id="dre-content">
+      <div class="spinner-wrap"><div class="spinner"></div></div>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast"></div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+// ─── FIREBASE INIT ──────────────────────────────────────
+firebase.initializeApp({
+  apiKey: "AIzaSyCXN022ug4NPEHt5MvOM7ZTTM9lpozKzGA",
+  authDomain: "dash-asd.firebaseapp.com",
+  projectId: "dash-asd",
+  storageBucket: "dash-asd.firebasestorage.app",
+  messagingSenderId: "330913861720",
+  appId: "1:330913861720:web:8ad6789ff17b34d942ba2d"
+});
+const db = firebase.firestore();
+
+// ─── UTILS ──────────────────────────────────────────────
+function brl(n) {
+  return (n || 0).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+}
+function fmtDate(ts) {
+  if (!ts) return '—';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleDateString('pt-BR');
+}
+function todayStr() {
+  return new Date().toISOString().split('T')[0];
+}
+function marginBadgeClass(pct) {
+  if (pct >= 40) return 'badge-green';
+  if (pct >= 20) return 'badge-yellow';
+  return 'badge-red';
+}
+
+let toastTimer;
+function showToast(msg, type='') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show ' + type;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.className = '', 2800);
+}
+
+// ─── NAVIGATION ─────────────────────────────────────────
+let currentPage = 'dashboard';
+let pageListeners = {};
+
+function showPage(id) {
+  document.querySelectorAll('section.page').forEach(s => s.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('nav button').forEach((b, i) => {
+    const pages = ['dashboard','transacoes','pedidos','orcamentos','dre'];
+    b.classList.toggle('active', pages[i] === id);
+  });
+  currentPage = id;
+  if (id === 'dre') renderDRE();
+}
+
+// ─── DASHBOARD ──────────────────────────────────────────
+function dashInit() {
+  const now = new Date();
+  const y = now.getFullYear(), m = now.getMonth();
+  const start = new Date(y, m, 1);
+  const end   = new Date(y, m+1, 0, 23, 59, 59);
+  const monthName = now.toLocaleDateString('pt-BR', {month:'long', year:'numeric'});
+  document.getElementById('dash-month').textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+
+  db.collection('transactions')
+    .where('date', '>=', firebase.firestore.Timestamp.fromDate(start))
+    .where('date', '<=', firebase.firestore.Timestamp.fromDate(end))
+    .onSnapshot(snap => {
+      let receita = 0, despesa = 0;
+      snap.forEach(d => {
+        const t = d.data();
+        if (t.type === 'receita') receita += t.amount || 0;
+        else despesa += t.amount || 0;
+      });
+      const lucro = receita - despesa;
+      const margem = receita > 0 ? (lucro / receita * 100) : 0;
+      const mg = document.getElementById('dash-metrics');
+      mg.innerHTML = `
+        <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">Receita</div><div class="metric-value green">${brl(receita)}</div></div>
+        <div class="metric-card"><div class="metric-icon">💸</div><div class="metric-label">Despesa</div><div class="metric-value red">${brl(despesa)}</div></div>
+        <div class="metric-card"><div class="metric-icon">📈</div><div class="metric-label">Lucro</div><div class="metric-value ${lucro >= 0 ? 'green' : 'red'}">${brl(lucro)}</div></div>
+        <div class="metric-card"><div class="metric-icon">🎯</div><div class="metric-label">Margem</div><div class="metric-value ${margem >= 40 ? 'green' : margem >= 20 ? 'blue' : 'red'}">${margem.toFixed(1)}%</div></div>
+      `;
+      document.getElementById('dash-summary').innerHTML = `
+        <div style="font-size:13px;color:#666;line-height:1.9;">
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0"><span>Receita Bruta</span><span style="color:#22c55e;font-weight:600;">${brl(receita)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f0f0f0"><span>Total Despesas</span><span style="color:#ef4444;font-weight:600;">${brl(despesa)}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:5px 0;"><span style="font-weight:700;">Resultado</span><span style="color:${lucro>=0?'#22c55e':'#ef4444'};font-weight:700;font-size:16px;">${brl(lucro)}</span></div>
+        </div>
+      `;
+    }, err => {
+      document.getElementById('dash-metrics').innerHTML = `<p style="color:#ef4444;grid-column:span 2">${err.message}</p>`;
+    });
+}
+
+// ─── TRANSAÇÕES ─────────────────────────────────────────
+const CATS_RECEITA = [
+  {k:'Serviços',e:'💼'},{k:'Locação',e:'🚁'},{k:'Cursos',e:'🎓'},{k:'Outros',e:'📦'}
+];
+const CATS_DESPESA = [
+  {k:'Pilotos',e:'👨‍✈️'},{k:'Logística',e:'📦'},{k:'Equipamentos',e:'🔧'},
+  {k:'Aluguel',e:'🏢'},{k:'Pessoal',e:'👥'},{k:'Marketing',e:'📢'},
+  {k:'Administrativo',e:'📋'},{k:'Taxas Pagamento',e:'💳'},{k:'Impostos',e:'🏛️'}
+];
+
+let trTipo = '', trCat = '';
+
+function toggleTrForm(open) {
+  const a = document.getElementById('tr-form-area');
+  if (open === false) { a.classList.remove('open'); resetTrForm(); return; }
+  a.classList.toggle('open');
+  if (a.classList.contains('open')) {
+    document.getElementById('tr-data').value = todayStr();
+  }
+}
+
+function resetTrForm() {
+  trTipo = ''; trCat = '';
+  document.getElementById('tr-valor').value = '';
+  document.getElementById('tr-desc').value = '';
+  document.getElementById('tr-data').value = '';
+  document.querySelectorAll('#tr-tipo-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  document.getElementById('tr-cat-group').style.display = 'none';
+}
+
+function selectTrTipo(tipo, btn) {
+  trTipo = tipo; trCat = '';
+  document.querySelectorAll('#tr-tipo-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const cats = tipo === 'receita' ? CATS_RECEITA : CATS_DESPESA;
+  const btns = cats.map(c =>
+    `<button class="btn-sel" onclick="selectTrCat('${c.k}',this);event.stopPropagation()">${c.e} ${c.k}</button>`
+  ).join('');
+  document.getElementById('tr-cat-buttons').innerHTML = btns;
+  document.getElementById('tr-cat-group').style.display = 'block';
+}
+
+function selectTrCat(cat, btn) {
+  trCat = cat;
+  document.querySelectorAll('#tr-cat-buttons .btn-sel').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+async function saveTr() {
+  if (!trTipo) { showToast('Selecione o tipo', 'error'); return; }
+  if (!trCat)  { showToast('Selecione a categoria', 'error'); return; }
+  const val  = parseFloat(document.getElementById('tr-valor').value);
+  const desc = document.getElementById('tr-desc').value.trim();
+  const date = document.getElementById('tr-data').value;
+  if (!val || val <= 0) { showToast('Informe um valor válido', 'error'); return; }
+  if (!desc) { showToast('Informe a descrição', 'error'); return; }
+  if (!date) { showToast('Informe a data', 'error'); return; }
+  try {
+    await db.collection('transactions').add({
+      type: trTipo, category: trCat, amount: val,
+      description: desc,
+      date: firebase.firestore.Timestamp.fromDate(new Date(date + 'T12:00:00')),
+      created_at: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    showToast('Transação salva!', 'success');
+    toggleTrForm(false);
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+async function deleteTr(id) {
+  if (!confirm('Excluir esta transação?')) return;
+  try {
+    await db.collection('transactions').doc(id).delete();
+    showToast('Excluído!');
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+function trInit() {
+  db.collection('transactions').orderBy('date','desc').limit(50)
+    .onSnapshot(snap => {
+      const el = document.getElementById('tr-list');
+      if (snap.empty) {
+        el.innerHTML = `<div class="empty-state"><div class="empty-icon">💸</div><p>Nenhuma transação encontrada. Clique em '+ Nova Transação' para começar.</p></div>`;
+        return;
+      }
+      const getCatEmoji = (type, cat) => {
+        const list = type === 'receita' ? CATS_RECEITA : CATS_DESPESA;
+        const f = list.find(c => c.k === cat);
+        return f ? f.e : '📌';
+      };
+      let html = '<div class="list-header">Transações recentes</div>';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const em = getCatEmoji(d.type, d.category);
+        html += `
+          <div class="list-item">
+            <div class="item-icon">${em}</div>
+            <div class="item-main">
+              <div class="item-title">${d.description || '—'}</div>
+              <div class="item-subtitle">${d.category} · ${fmtDate(d.date)}</div>
+            </div>
+            <div class="item-amount ${d.type === 'receita' ? 'green' : 'red'}">${brl(d.amount)}</div>
+            <button class="btn-icon" onclick="deleteTr('${doc.id}')" title="Excluir">🗑️</button>
+          </div>`;
+      });
+      el.innerHTML = html;
+    }, err => {
+      document.getElementById('tr-list').innerHTML = `<p style="padding:16px;color:#ef4444;">${err.message}</p>`;
+    });
+}
+
+// ─── PEDIDOS ────────────────────────────────────────────
+let pedServico = '', pedImposto = 0;
+
+function togglePedForm(open) {
+  const a = document.getElementById('ped-form-area');
+  if (open === false) { a.classList.remove('open'); resetPedForm(); return; }
+  a.classList.toggle('open');
+  if (a.classList.contains('open')) {
+    document.getElementById('ped-data').value = todayStr();
+  }
+}
+
+function resetPedForm() {
+  pedServico = ''; pedImposto = 0;
+  ['ped-cliente','ped-receita','ped-piloto','ped-logistica','ped-taxa','ped-equip'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('ped-data').value = '';
+  document.querySelectorAll('#ped-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('#ped-imposto-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  document.getElementById('imp-0').classList.add('selected');
+  calcPedido();
+}
+
+function selectPedServico(s, btn) {
+  pedServico = s;
+  document.querySelectorAll('#ped-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  // Auto-select imposto
+  if (s === 'Locação s/ Op') selectImposto(6, document.getElementById('imp-6'));
+  else if (s === 'Locação c/ Op') selectImposto(15, document.getElementById('imp-15'));
+  else selectImposto(0, document.getElementById('imp-0'));
+  calcPedido();
+}
+
+function selectImposto(pct, btn) {
+  pedImposto = pct;
+  document.querySelectorAll('#ped-imposto-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  calcPedido();
+}
+
+function calcPedido() {
+  const rec   = parseFloat(document.getElementById('ped-receita').value) || 0;
+  const pilot = parseFloat(document.getElementById('ped-piloto').value) || 0;
+  const logis = parseFloat(document.getElementById('ped-logistica').value) || 0;
+  const taxa  = parseFloat(document.getElementById('ped-taxa').value) || 0;
+  const equip = parseFloat(document.getElementById('ped-equip').value) || 0;
+  const impV  = pilot * (pedImposto / 100);
+  const custo = pilot + impV + logis + taxa + equip;
+  const margV = rec - custo;
+  const margP = rec > 0 ? (margV / rec * 100) : 0;
+  document.getElementById('cc-imposto').textContent = brl(impV);
+  document.getElementById('cc-custo').textContent   = brl(custo);
+  document.getElementById('cc-margem-val').textContent = brl(margV);
+  const pctEl = document.getElementById('cc-margem-pct');
+  pctEl.textContent = margP.toFixed(1) + '%';
+  pctEl.className = 'badge ' + marginBadgeClass(margP);
+}
+
+async function savePedido() {
+  if (!pedServico) { showToast('Selecione o tipo de serviço', 'error'); return; }
+  const cliente = document.getElementById('ped-cliente').value.trim();
+  const date    = document.getElementById('ped-data').value;
+  const rec     = parseFloat(document.getElementById('ped-receita').value) || 0;
+  const pilot   = parseFloat(document.getElementById('ped-piloto').value) || 0;
+  const logis   = parseFloat(document.getElementById('ped-logistica').value) || 0;
+  const taxa    = parseFloat(document.getElementById('ped-taxa').value) || 0;
+  const equip   = parseFloat(document.getElementById('ped-equip').value) || 0;
+  if (!cliente) { showToast('Informe o cliente', 'error'); return; }
+  if (!date)    { showToast('Informe a data', 'error'); return; }
+  if (rec <= 0) { showToast('Informe a receita', 'error'); return; }
+  const impV  = pilot * (pedImposto / 100);
+  const custo = pilot + impV + logis + taxa + equip;
+  const margV = rec - custo;
+  const margP = rec > 0 ? (margV / rec * 100) : 0;
+  try {
+    await db.collection('pedidos').add({
+      date: firebase.firestore.Timestamp.fromDate(new Date(date + 'T12:00:00')),
+      cliente, servico: pedServico, receita: rec,
+      custo_piloto: pilot, imposto_percentual: pedImposto, imposto_valor: impV,
+      custo_logistica: logis, taxa_pagamento: taxa, custo_equipamento: equip,
+      custos_totais: custo, margem_valor: margV, margem_percentual: margP,
+      status: 'concluido',
+      created_at: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    showToast('Pedido salvo!', 'success');
+    togglePedForm(false);
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+async function deletePedido(id) {
+  if (!confirm('Excluir este pedido?')) return;
+  try {
+    await db.collection('pedidos').doc(id).delete();
+    showToast('Excluído!');
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+function pedInit() {
+  db.collection('pedidos').orderBy('date','desc').limit(50)
+    .onSnapshot(snap => {
+      const el = document.getElementById('ped-list');
+      if (snap.empty) {
+        el.innerHTML = `<div class="empty-state"><div class="empty-icon">📦</div><p>Nenhum pedido encontrado. Clique em '+ Novo Pedido' para começar.</p></div>`;
+        return;
+      }
+      let html = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const bc = marginBadgeClass(d.margem_percentual || 0);
+        html += `
+          <div class="pedido-card">
+            <div class="p-info">
+              <div class="p-title">${d.cliente || '—'}</div>
+              <div class="p-sub">${d.servico || '—'} · ${fmtDate(d.date)}</div>
+            </div>
+            <div class="p-right">
+              <span class="badge ${bc}">${(d.margem_percentual||0).toFixed(1)}%</span>
+              <div class="p-margem-val">${brl(d.margem_valor)}</div>
+            </div>
+            <button class="btn-icon" onclick="deletePedido('${doc.id}')" title="Excluir">🗑️</button>
+          </div>`;
+      });
+      el.innerHTML = html;
+    }, err => {
+      document.getElementById('ped-list').innerHTML = `<p style="color:#ef4444;padding:16px;">${err.message}</p>`;
+    });
+}
+
+// ─── ORÇAMENTOS ─────────────────────────────────────────
+let orcStep = 1, orcServico = '';
+let orcData = { nome:'', email:'', tel:'', itens:[] };
+
+function toggleOrcForm(open) {
+  const a = document.getElementById('orc-form-area');
+  if (open === false) { a.classList.remove('open'); resetOrcForm(); return; }
+  a.classList.toggle('open');
+  if (a.classList.contains('open')) resetOrcForm();
+}
+
+function resetOrcForm() {
+  orcStep = 1; orcServico = '';
+  orcData = { nome:'', email:'', tel:'', itens:[] };
+  ['orc-nome','orc-email','orc-tel','orc-desconto','orc-piloto','orc-logistica','orc-equip'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  document.querySelectorAll('#orc-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  document.getElementById('orc-itens-list').innerHTML = '';
+  updateOrcSteps();
+  calcOrcamento();
+}
+
+function updateOrcSteps() {
+  for (let i = 1; i <= 4; i++) {
+    const dot = document.getElementById('sdot-' + i);
+    dot.classList.remove('active','done');
+    if (i < orcStep) dot.classList.add('done');
+    else if (i === orcStep) dot.classList.add('active');
+    const line = document.getElementById('sline-' + i);
+    if (line) line.classList.toggle('done', i < orcStep);
+    document.getElementById('wstep-' + i).classList.toggle('active', i === orcStep);
+  }
+}
+
+function selectOrcServico(s, btn) {
+  orcServico = s;
+  document.querySelectorAll('#orc-servico-group .btn-sel').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function orcNext(step) {
+  if (step > orcStep) {
+    if (orcStep === 1) {
+      const nome = document.getElementById('orc-nome').value.trim();
+      if (!nome) { showToast('Informe o nome do cliente', 'error'); return; }
+      orcData.nome  = nome;
+      orcData.email = document.getElementById('orc-email').value.trim();
+      orcData.tel   = document.getElementById('orc-tel').value.trim();
+    } else if (orcStep === 2) {
+      if (!orcServico) { showToast('Selecione o tipo de serviço', 'error'); return; }
+    } else if (orcStep === 3) {
+      if (orcData.itens.length === 0) { showToast('Adicione ao menos 1 item', 'error'); return; }
+    }
+  }
+  orcStep = step;
+  updateOrcSteps();
+  if (orcStep === 4) {
+    calcOrcamento();
+    document.getElementById('orc4-total').textContent = document.getElementById('orc-total').textContent;
+    calcOrcCustos();
+  }
+}
+
+function addOrcItem() {
+  const idx = orcData.itens.length;
+  orcData.itens.push({ descricao: '', valor: 0 });
+  const list = document.getElementById('orc-itens-list');
+  const row = document.createElement('div');
+  row.className = 'orcamento-item-row';
+  row.id = 'orc-item-' + idx;
+  row.innerHTML = `
+    <input type="text" class="form-control" placeholder="Descrição do item" oninput="orcItemChange(${idx},'d',this.value)">
+    <input type="number" class="form-control val-input" placeholder="R$ 0,00" min="0" step="0.01" oninput="orcItemChange(${idx},'v',this.value)">
+    <button class="btn-icon" onclick="removeOrcItem(${idx})">🗑️</button>
+  `;
+  list.appendChild(row);
+}
+
+function orcItemChange(idx, field, val) {
+  if (!orcData.itens[idx]) return;
+  if (field === 'd') orcData.itens[idx].descricao = val;
+  else orcData.itens[idx].valor = parseFloat(val) || 0;
+  calcOrcamento();
+}
+
+function removeOrcItem(idx) {
+  orcData.itens.splice(idx, 1);
+  // Re-render all items
+  const list = document.getElementById('orc-itens-list');
+  list.innerHTML = '';
+  const saved = [...orcData.itens];
+  orcData.itens = [];
+  saved.forEach(item => {
+    addOrcItem();
+    const idx2 = orcData.itens.length - 1;
+    orcData.itens[idx2] = item;
+    const row = document.getElementById('orc-item-' + idx2);
+    if (row) {
+      row.querySelector('input[type=text]').value = item.descricao;
+      row.querySelector('input[type=number]').value = item.valor || '';
+    }
+  });
+  calcOrcamento();
+}
+
+function calcOrcamento() {
+  const sub = orcData.itens.reduce((s, it) => s + (it.valor || 0), 0);
+  const desc = parseFloat(document.getElementById('orc-desconto')?.value) || 0;
+  const descVal = sub * (desc / 100);
+  const total = sub - descVal;
+  const subEl = document.getElementById('orc-subtotal');
+  if (subEl) subEl.textContent = brl(sub);
+  const descRow = document.getElementById('orc-desc-row');
+  const descValEl = document.getElementById('orc-desc-val');
+  if (descRow) descRow.style.display = desc > 0 ? 'flex' : 'none';
+  if (descValEl) descValEl.textContent = '- ' + brl(descVal);
+  const totalEl = document.getElementById('orc-total');
+  if (totalEl) totalEl.textContent = brl(total);
+  return { sub, descVal, total };
+}
+
+function calcOrcCustos() {
+  const { total } = calcOrcamento();
+  const piloto = parseFloat(document.getElementById('orc-piloto')?.value) || 0;
+  const logis  = parseFloat(document.getElementById('orc-logistica')?.value) || 0;
+  const equip  = parseFloat(document.getElementById('orc-equip')?.value) || 0;
+  const custo  = piloto + logis + equip;
+  const margV  = total - custo;
+  const margP  = total > 0 ? (margV / total * 100) : 0;
+  const t4 = document.getElementById('orc4-total');
+  const c4 = document.getElementById('orc4-custo');
+  const mv = document.getElementById('orc4-margem-val');
+  const mp = document.getElementById('orc4-margem-pct');
+  if (t4) t4.textContent = brl(total);
+  if (c4) c4.textContent = brl(custo);
+  if (mv) mv.textContent = brl(margV);
+  if (mp) { mp.textContent = margP.toFixed(1) + '%'; mp.className = 'badge ' + marginBadgeClass(margP); }
+}
+
+async function saveOrcamento() {
+  const { sub, descVal, total } = calcOrcamento();
+  if (!orcData.nome) { showToast('Dados do cliente incompletos', 'error'); return; }
+  if (!orcServico)   { showToast('Selecione o serviço', 'error'); return; }
+  if (orcData.itens.length === 0) { showToast('Adicione itens', 'error'); return; }
+  const piloto = parseFloat(document.getElementById('orc-piloto')?.value) || 0;
+  const logis  = parseFloat(document.getElementById('orc-logistica')?.value) || 0;
+  const equip  = parseFloat(document.getElementById('orc-equip')?.value) || 0;
+  const custo  = piloto + logis + equip;
+  const margV  = total - custo;
+  const desc   = parseFloat(document.getElementById('orc-desconto')?.value) || 0;
+  try {
+    await db.collection('orcamentos').add({
+      created_at: firebase.firestore.FieldValue.serverTimestamp(),
+      cliente: { nome: orcData.nome, email: orcData.email, telefone: orcData.tel },
+      servico: orcServico,
+      itens: orcData.itens,
+      subtotal: sub,
+      desconto: desc,
+      total_cliente: total,
+      custo_interno: { piloto, logistica: logis, equipamento: equip },
+      custo_total: custo,
+      margem_estimada: total > 0 ? (margV / total * 100) : 0,
+      status: 'enviado'
+    });
+    showToast('Orçamento gerado!', 'success');
+    toggleOrcForm(false);
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+async function deleteOrcamento(id) {
+  if (!confirm('Excluir este orçamento?')) return;
+  try {
+    await db.collection('orcamentos').doc(id).delete();
+    showToast('Excluído!');
+  } catch(e) { showToast(e.message, 'error'); }
+}
+
+function orcInit() {
+  db.collection('orcamentos').orderBy('created_at','desc').limit(50)
+    .onSnapshot(snap => {
+      const el = document.getElementById('orc-list');
+      if (snap.empty) {
+        el.innerHTML = `<div class="empty-state"><div class="empty-icon">📄</div><p>Nenhum orçamento encontrado. Clique em '+ Novo Orçamento' para começar.</p></div>`;
+        return;
+      }
+      let html = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const bc = marginBadgeClass(d.margem_estimada || 0);
+        html += `
+          <div class="pedido-card">
+            <div class="p-info">
+              <div class="p-title">${d.cliente?.nome || '—'}</div>
+              <div class="p-sub">${d.servico || '—'} · ${fmtDate(d.created_at)}</div>
+            </div>
+            <div class="p-right">
+              <span class="badge ${bc}">${(d.margem_estimada||0).toFixed(1)}%</span>
+              <div class="p-margem-val">${brl(d.total_cliente)}</div>
+            </div>
+            <button class="btn-icon" onclick="deleteOrcamento('${doc.id}')" title="Excluir">🗑️</button>
+          </div>`;
+      });
+      el.innerHTML = html;
+    }, err => {
+      document.getElementById('orc-list').innerHTML = `<p style="color:#ef4444;padding:16px;">${err.message}</p>`;
+    });
+}
+
+// ─── DRE ────────────────────────────────────────────────
+let dreYear, dreMonth;
+
+function dreInit() {
+  const now = new Date();
+  dreYear = now.getFullYear();
+  dreMonth = now.getMonth();
+  renderDRE();
+}
+
+function dreChangeMonth(delta) {
+  dreMonth += delta;
+  if (dreMonth > 11) { dreMonth = 0; dreYear++; }
+  if (dreMonth < 0)  { dreMonth = 11; dreYear--; }
+  renderDRE();
+}
+
+async function renderDRE() {
+  const start = new Date(dreYear, dreMonth, 1);
+  const end   = new Date(dreYear, dreMonth+1, 0, 23, 59, 59);
+  const label = start.toLocaleDateString('pt-BR', {month:'long', year:'numeric'});
+  document.getElementById('dre-month-label').textContent =
+    label.charAt(0).toUpperCase() + label.slice(1);
+  document.getElementById('dre-content').innerHTML =
+    '<div class="spinner-wrap"><div class="spinner"></div></div>';
+  try {
+    const snap = await db.collection('transactions')
+      .where('date', '>=', firebase.firestore.Timestamp.fromDate(start))
+      .where('date', '<=', firebase.firestore.Timestamp.fromDate(end))
+      .get();
+    const acc = {
+      receita: 0,
+      Pilotos:0, Logística:0, Equipamentos:0, 'Taxas Pagamento':0,
+      Aluguel:0, Pessoal:0, Marketing:0, Administrativo:0, Impostos:0,
+      Outros_desp:0
+    };
+    snap.forEach(d => {
+      const t = d.data();
+      if (t.type === 'receita') { acc.receita += t.amount || 0; return; }
+      const cat = t.category;
+      if (acc[cat] !== undefined) acc[cat] += t.amount || 0;
+      else acc.Outros_desp += t.amount || 0;
+    });
+    const custsVar = acc.Pilotos + acc.Logística + acc.Equipamentos + acc['Taxas Pagamento'];
+    const margContr = acc.receita - custsVar;
+    const despFixed = acc.Aluguel + acc.Pessoal + acc.Marketing + acc.Administrativo + acc.Impostos;
+    const lucro = margContr - despFixed;
+    const lucroClass = lucro >= 0 ? 'green-bg' : 'red-bg';
+
+    const dreRow = (label, val, indent=false, cls='') =>
+      `<div class="dre-row ${indent ? 'indent' : ''} ${cls}">
+        <span class="dre-label">${label}</span>
+        <span class="dre-val">${brl(val)}</span>
+       </div>`;
+
+    document.getElementById('dre-content').innerHTML = `
+      ${dreRow('RECEITA BRUTA', acc.receita)}
+      ${dreRow('(-) CUSTOS VARIÁVEIS', custsVar)}
+      ${dreRow('├─ Pilotos', acc.Pilotos, true)}
+      ${dreRow('├─ Logística', acc.Logística, true)}
+      ${dreRow('├─ Equipamentos', acc.Equipamentos, true)}
+      ${dreRow('└─ Taxas Pagamento', acc['Taxas Pagamento'], true)}
+      <div class="dre-row subtotal blue-bg">
+        <span class="dre-label">= MARGEM DE CONTRIBUIÇÃO</span>
+        <span class="dre-val">${brl(margContr)}</span>
+      </div>
+      ${dreRow('(-) DESPESAS FIXAS', despFixed)}
+      ${dreRow('├─ Aluguel', acc.Aluguel, true)}
+      ${dreRow('├─ Pessoal', acc.Pessoal, true)}
+      ${dreRow('├─ Marketing', acc.Marketing, true)}
+      ${dreRow('├─ Administrativo', acc.Administrativo, true)}
+      ${dreRow('└─ Impostos', acc.Impostos, true)}
+      <div class="dre-row subtotal ${lucroClass}">
+        <span class="dre-label">= LUCRO OPERACIONAL</span>
+        <span class="dre-val">${brl(lucro)}</span>
+      </div>
+    `;
+  } catch(e) {
+    document.getElementById('dre-content').innerHTML =
+      `<p style="color:#ef4444;">${e.message}</p>`;
+  }
+}
+
+// ─── BOOT ────────────────────────────────────────────────
+dashInit();
+trInit();
+pedInit();
+orcInit();
+dreInit();
+</script>
+</body>
+</html>
